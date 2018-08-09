@@ -42,6 +42,8 @@ class Writer:
 				raise Exception(
 					f'Invalid number of columns, data frame requires {num_cols} columns, was given {len(attrs) - 1} columns')
 
+			self.__check_attrs__(data_frame, attrs)
+
 			data_frame = self.__match_attr__(data_frame, attrs)
 
 			valid_pk, primary_keys = self.__is_valid_pk__(data_frame, attrs=attrs)
@@ -56,7 +58,7 @@ class Writer:
 		self.__create_table__(attr_dict)
 		self.__populate_table__(data_frame, attr_dict['__tablename__'])
 
-		print(f'Success: Created table: {tablename} from {data_frame}')
+		print(f'Success: Created table: {tablename}')
 
 	def __create_table__(self, attr_dict: dict):
 		table = type(attr_dict['__tablename__'], (self.Base,), attr_dict)
@@ -153,6 +155,27 @@ class Writer:
 				col_names[column_name] = column_name
 
 		return data_frame.rename(columns=col_names)
+
+	def __check_attrs__(self, data_frame: DataFrame, attrs: dict):
+		"""
+		Ideal attr_dict structure:
+		key: column name
+		value: dictionary of attributes
+		+ dtype -> datatype
+		+ primary_key -> True/False
+		+ size -> Applicable for STR only
+		+ backing -> if the column name does not match up with the df column, refer to this field
+		"""
+		for column_name, attributes in attrs.items():
+			if column_name is '__tablename__':
+				continue
+
+			if 'dtype' not in attributes:
+				raise Exception(f'Data type of column: {column_name} not specified')
+			if 'primary_key' not in attributes:
+				raise Exception(f'Primary key of column: {column_name} not specified')
+			if column_name not in data_frame.columns and 'backing' not in attributes:
+				raise Exception(f'Changing a column: {column_name} will require a \'backing\' field to be declared')
 
 	def __has_table__(self, tablename: str):
 		self.metadata.reflect(bind=self.engine)

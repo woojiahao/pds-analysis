@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from database.data_types import DataTypes
 from database.writer import Writer
@@ -8,15 +7,7 @@ file_name = 'data/primary-enrolment-by-age.csv'
 
 db_writer = Writer('postgresql://postgres:root@localhost:5432/pds')
 df = pd.read_csv(file_name)
-"""
-Ideal attr_dict structure:
-key: column name
-value: dictionary of attributes
-+ dtype -> datatype
-+ primary_key -> True/False (if not specified, false by defualt)
-+ size -> Applicable for STR only
-+ backing -> if the column name does not match up with the df column, refer to this field
-"""
+
 attr_dict = {
 	'__tablename__': 'temp',
 	'year': {
@@ -38,4 +29,4 @@ attr_dict = {
 		'backing': 'enrolment_primary'
 	}
 }
-db_writer.write('temp', df, attrs=attr_dict)
+db_writer.write('enrolment', df, attrs=attr_dict)
