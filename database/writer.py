@@ -7,7 +7,6 @@ from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
 
-# todo: add checking of what is in the attr_dict to ensure that it conforms to the desired standards
 from database.data_types import DataTypes
 
 
