@@ -1,7 +1,8 @@
 import re
 
-from pandas import DataFrame
 import pandas as pd
+from numpy.core.multiarray import ndarray
+from pandas import DataFrame
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
@@ -51,8 +52,24 @@ class Writer:
 				raise Exception(f'Primary keys chosen {primary_keys} is not valid')
 
 		data_frame, attr_dict = self.__generate_attr_dict__(tablename, data_frame, primary_keys, attrs)
-		print(f'data_frame: {data_frame}')
-		print(f'attr_dict: {attr_dict}')
+
+		self.__create_table__(attr_dict)
+		self.__populate_table__(data_frame, attr_dict['__tablename__'])
+
+		print(f'Success: Created table: {tablename} from {data_frame}')
+
+	def __create_table__(self, attr_dict: dict):
+		table = type(attr_dict['__tablename__'], (self.Base,), attr_dict)
+		table.extend_existing = True
+		self.metadata.create_all(self.engine)
+
+	def __populate_table__(self, data_frame: DataFrame, tablename: str):
+		self.metadata.reflect(bind=self.engine)
+		table: Table = self.metadata.tables[tablename]
+		with self.engine.connect() as conn:
+			for row in data_frame.values:
+				ins = table.insert(values=ndarray.tolist(row))
+				conn.execute(ins)
 
 	def __generate_attr_dict__(self, tablename: str, data_frame: DataFrame, primary_keys: tuple,
 							   attrs: dict = None) -> tuple:
