@@ -1,9 +1,9 @@
 from config import Config
 from database.data_types import DataTypes
-from loading.entity import Entity
-from loading.loader import Loader
+from entities.entity import Entity
+from entities.entity_loader import EntityLoader
 
-loader = Loader(Config.DATABASE_CONNECTION_STRING)
+entity_loader = EntityLoader(Config.DATABASE_CONNECTION_STRING)
 
 live_births = Entity(
 	tablename='live_births',
@@ -102,5 +102,5 @@ gdp = Entity(
 	}
 )
 
-loader.add_entities([enrolment, live_births, occupations, gdp])
-loader.load_all()
+entity_loader.add_entities([enrolment, live_births, occupations, gdp])
+entity_loader.load_all()

@@ -1,9 +1,9 @@
 from database.alchemy_manager import AlchemyManager
 from database.writer import Writer
-from loading.entity import Entity
+from entities.entity import Entity
 
 
-class Loader:
+class EntityLoader:
 	def __init__(self, conn_str: str):
 		self.entities = None
 		self.alchemy_manager = AlchemyManager(conn_str)
