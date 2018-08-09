@@ -32,7 +32,7 @@ class Writer:
 			raise Exception(f'{tablename} already exists in the database, please pick another table name')
 
 		if attrs is not None:
-			if '__tablename__' not in attrs.keys():
+			if '__tablename__' not in attrs:
 				print(f'No __tablename__ attribute found, using the one supplied: {tablename}')
 				attrs['__tablename__'] = tablename
 
@@ -108,7 +108,7 @@ class Writer:
 				elif data_type == DataTypes.FLOAT64:
 					data_frame[column_name] = pd.to_numeric(data_frame[column_name], downcast='float')
 					dtype = Float
-				elif data_type == DataTypes.FLOAT64:
+				elif data_type == DataTypes.DATETIME:
 					data_frame[column_name] = pd.to_datetime(data_frame[column_name])
 					dtype = Date
 				elif data_type == DataTypes.BOOLEAN:
