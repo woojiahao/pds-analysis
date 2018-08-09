@@ -10,6 +10,7 @@ from sqlalchemy_utils import database_exists
 from database.data_types import DataTypes
 
 
+# todo: introduce more date formats
 class Writer:
 	def __init__(self, conn_str: str):
 		self.conn_str = conn_str
@@ -69,6 +70,7 @@ class Writer:
 		table: Table = self.metadata.tables[tablename]
 		with self.engine.connect() as conn:
 			for row in data_frame.values:
+				print(row)
 				ins = table.insert(values=ndarray.tolist(row))
 				conn.execute(ins)
 
