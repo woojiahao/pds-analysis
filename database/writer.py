@@ -1,35 +1,21 @@
-import re
-
 import pandas as pd
-from numpy.core.multiarray import ndarray
 from pandas import DataFrame
 from sqlalchemy import *
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy_utils import database_exists
 
+from database.alchemy_manager import AlchemyManager
 from database.data_types import DataTypes
 
 
 # todo: introduce more date formats
 class Writer:
-	def __init__(self, conn_str: str):
-		self.conn_str = conn_str
-		conn_str_valid = self.__verify_connection__()
-		if not conn_str_valid[0]:
-			raise Exception(conn_str_valid[1])
-
-		if not database_exists(self.conn_str):
-			raise Exception(f'Database: {self.conn_str[self.conn_str.rfind("/") + 1 : ]} does not exist')
-
-		self.engine = create_engine(conn_str)
-		self.Base = declarative_base(bind=self.engine)
-		self.metadata = self.Base.metadata
+	def __init__(self, alchemy_manager: AlchemyManager):
+		self.alchemy_manager = alchemy_manager
 
 	def write(self, tablename: str, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None):
 		if attrs is None and primary_keys is None:
 			raise Exception('Specify the primary keys if you are not specifying the attributes')
 
-		if self.__has_table__(tablename):
+		if self.alchemy_manager.has_table(tablename):
 			raise Exception(f'{tablename} already exists in the database, please pick another table name')
 
 		if attrs is not None:
@@ -55,24 +41,10 @@ class Writer:
 
 		data_frame, attr_dict = self.__generate_attr_dict__(tablename, data_frame, primary_keys, attrs)
 
-		self.__create_table__(attr_dict)
-		self.__populate_table__(data_frame, attr_dict['__tablename__'])
+		self.alchemy_manager.create_table(attr_dict)
+		self.alchemy_manager.populate_table(data_frame, attr_dict['__tablename__'])
 
 		print(f'Success: Created table: {tablename}')
-
-	def __create_table__(self, attr_dict: dict):
-		table = type(attr_dict['__tablename__'], (self.Base,), attr_dict)
-		table.extend_existing = True
-		self.metadata.create_all(self.engine)
-
-	def __populate_table__(self, data_frame: DataFrame, tablename: str):
-		self.metadata.reflect(bind=self.engine)
-		table: Table = self.metadata.tables[tablename]
-		with self.engine.connect() as conn:
-			for row in data_frame.values:
-				print(row)
-				ins = table.insert(values=ndarray.tolist(row))
-				conn.execute(ins)
 
 	def __generate_attr_dict__(self, tablename: str, data_frame: DataFrame, primary_keys: tuple,
 							   attrs: dict = None) -> tuple:
@@ -177,18 +149,3 @@ class Writer:
 				raise Exception(f'Primary key of column: {column_name} not specified')
 			if column_name not in data_frame.columns and 'backing' not in attributes:
 				raise Exception(f'Changing a column: {column_name} will require a \'backing\' field to be declared')
-
-	def __has_table__(self, tablename: str):
-		self.metadata.reflect(bind=self.engine)
-		try:
-			self.metadata.tables[tablename]
-		except KeyError:
-			return False
-		return True
-
-	def __verify_connection__(self) -> tuple:
-		pattern = '^\w+:\/\/\w+:\w+\@\w+:\d+\/\w+$'
-		if re.match(pattern, self.conn_str) is None:
-			return False, 'Invalid format'
-
-		return True, 'Valid'

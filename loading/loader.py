@@ -1,3 +1,4 @@
+from database.alchemy_manager import AlchemyManager
 from database.writer import Writer
 from loading.entity import Entity
 
@@ -5,7 +6,8 @@ from loading.entity import Entity
 class Loader:
 	def __init__(self, conn_str: str):
 		self.entities = None
-		self.writer = Writer(conn_str)
+		self.alchemy_manager = AlchemyManager(conn_str)
+		self.writer = Writer(self.alchemy_manager)
 
 	def add_entity(self, entity: Entity):
 		if self.entities is None:
