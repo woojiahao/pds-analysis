@@ -1,12 +1,15 @@
 import re
 
 from pandas import DataFrame
+import pandas as pd
 from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_utils import database_exists
 
-
 # todo: add checking of what is in the attr_dict to ensure that it conforms to the desired standards
+from database.data_types import DataTypes
+
+
 class Writer:
 	def __init__(self, conn_str: str):
 		self.conn_str = conn_str
@@ -21,45 +24,86 @@ class Writer:
 		self.Base = declarative_base(bind=self.engine)
 		self.metadata = self.Base.metadata
 
-	def write(self, tablename: str, data_frame: DataFrame, primary_keys: tuple = None, attr_dict: dict = None):
-		if attr_dict is None and primary_keys is None:
+	def write(self, tablename: str, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None):
+		if attrs is None and primary_keys is None:
 			raise Exception('Specify the primary keys if you are not specifying the attributes')
 
 		if self.__has_table__(tablename):
 			raise Exception(f'{tablename} already exists in the database, please pick another table name')
 
-		if attr_dict is not None:
-			if '__tablename__' not in attr_dict.keys():
+		if attrs is not None:
+			if '__tablename__' not in attrs.keys():
 				print(f'No __tablename__ attribute found, using the one supplied: {tablename}')
-				attr_dict['__tablename__'] = tablename
+				attrs['__tablename__'] = tablename
 
 			num_cols = data_frame.shape[1]
-			if len(attr_dict) != num_cols + 1:
+			if len(attrs) != num_cols + 1:
 				raise Exception(
-					f'Invalid number of columns, data frame requires {num_cols} columns, was given {len(attr_dict) - 1} columns')
+					f'Invalid number of columns, data frame requires {num_cols} columns, was given {len(attrs) - 1} columns')
 
-			data_frame = self.__match_attr__(data_frame, attr_dict)
+			data_frame = self.__match_attr__(data_frame, attrs)
 
-			if not self.__is_valid_pk__(data_frame, attr_dict=attr_dict):
-				raise Exception(f'Primary keys chosen for {attr_dict} is not valid')
+			valid_pk, primary_keys = self.__is_valid_pk__(data_frame, attrs=attrs)
+			if not valid_pk:
+				raise Exception(f'Primary keys chosen for {attrs} is not valid')
 		else:
-			if not self.__is_valid_pk__(data_frame, primary_keys):
+			if not self.__is_valid_pk__(data_frame, primary_keys=primary_keys)[0]:
 				raise Exception(f'Primary keys chosen {primary_keys} is not valid')
 
-			attr_dict = self.__generate_attr_dict__(tablename, data_frame, primary_keys)
+		data_frame, attr_dict = self.__generate_attr_dict__(tablename, data_frame, primary_keys, attrs)
+		print(f'data_frame: {data_frame}')
+		print(f'attr_dict: {attr_dict}')
 
-	def __generate_attr_dict__(self, tablename: str, data_frame: DataFrame, primary_keys: tuple) -> dict:
+	def __generate_attr_dict__(self, tablename: str, data_frame: DataFrame, primary_keys: tuple,
+							   attrs: dict = None) -> tuple:
 		attr_dict = { '__tablename__': tablename }
-		dtypes = data_frame.dtypes
 
-		for column_name, data_type in dtypes.items():
-			pass
+		if attrs is None:
+			for columm_name, data_type in data_frame.dtypes.items():
+				dtype = None
+				if data_type == DataTypes.INT64:
+					dtype = Integer
+				elif data_type == DataTypes.STR:
+					dtype = String(data_frame[columm_name].map(len).max())
+				elif data_type == DataTypes.BOOLEAN:
+					dtype = Boolean
+				elif data_type == DataTypes.DATETIME:
+					dtype = Date
+				elif data_type == DataTypes.FLOAT64:
+					dtype = Float
 
-		return attr_dict
+				attr_dict[columm_name] = Column(dtype, primary_key=columm_name in primary_keys)
+		else:
+			for column_name, attributes in attrs.items():
+				if column_name is '__tablename__':
+					continue
 
-	def __is_valid_pk__(self, data_frame: DataFrame, primary_keys: tuple = None, attr_dict: dict = None) -> bool:
+				dtype = None
+				data_type = attributes['dtype']
+				if data_type == DataTypes.INT64:
+					data_frame[column_name] = pd.to_numeric(data_frame[column_name], downcast='integer')
+					dtype = Integer
+				elif data_type == DataTypes.STR:
+					data_frame[column_name] = data_frame[column_name].astype(str)
+					max_length = data_frame[column_name].map(len).max()
+					dtype = String(max_length if 'size' not in attributes else attributes['size'])
+				elif data_type == DataTypes.FLOAT64:
+					data_frame[column_name] = pd.to_numeric(data_frame[column_name], downcast='float')
+					dtype = Float
+				elif data_type == DataTypes.FLOAT64:
+					data_frame[column_name] = pd.to_datetime(data_frame[column_name])
+					dtype = Date
+				elif data_type == DataTypes.BOOLEAN:
+					data_frame[column_name] = data_frame[column_name].astype(bool)
+					dtype = Boolean
+
+				attr_dict[column_name] = Column(dtype, primary_key=attributes['primary_key'])
+
+		return data_frame, attr_dict
+
+	def __is_valid_pk__(self, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None) -> tuple:
 		if primary_keys is None:
-			primary_keys = [column_name for column_name, attributes in attr_dict.items()
+			primary_keys = [column_name for column_name, attributes in attrs.items()
 							if column_name is not '__tablename__' and attributes['primary_key']]
 		else:
 			for primary_key in primary_keys:
@@ -74,12 +118,11 @@ class Writer:
 		for i in range(1, len(primary_keys)):
 			filtered += data_frame[primary_keys[i]].map(str)
 
-		return len(filtered) == len(set(filtered))
+		return len(filtered) == len(set(filtered)), primary_keys
 
-
-	def __match_attr__(self, data_frame: DataFrame, attr_dict: dict) -> DataFrame:
+	def __match_attr__(self, data_frame: DataFrame, attrs: dict) -> DataFrame:
 		col_names = { }
-		for column_name, attributes in attr_dict.items():
+		for column_name, attributes in attrs.items():
 			if column_name is '__tablename__':
 				continue
 
