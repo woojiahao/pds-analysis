@@ -24,6 +24,7 @@ class AlchemyManager:
 		table = type(attr_dict['__tablename__'], (self.Base,), attr_dict)
 		table.extend_existing = True
 		self.metadata.create_all(bind=self.engine)
+		db.session.commit()
 		print(f'{attr_dict["__tablename__"]} has been created')
 
 	def populate_table(self, data_frame: DataFrame, tablename: str):
