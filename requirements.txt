@@ -1,0 +1,9 @@
+Flask
+SQLAlchemy
+gunicorn
+numpy
+matplotlib
+pandas
+SQLAlchemy-Utils
+psycopg2
+python-dotenv
