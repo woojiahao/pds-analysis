@@ -17,7 +17,7 @@ class AlchemyManager:
 		if not database_exists(self.conn_str):
 			raise Exception(f'Database: {self.conn_str[self.conn_str.rfind("/") + 1 : ]} does not exist')
 
-		self.engine = create_engine(conn_str)
+		self.engine = create_engine(conn_str, pool_pre_ping=True)
 		self.Base = declarative_base(bind=self.engine)
 		self.metadata = self.Base.metadata
 
