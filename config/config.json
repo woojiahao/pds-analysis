@@ -1,0 +1,3 @@
+{
+  "local_database_url": "postgresql://postgres:root@localhost:5432/pds"
+}
