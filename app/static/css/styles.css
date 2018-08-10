@@ -18,9 +18,10 @@ body {
 
 header {
     background-color: #FFFFFF;
-    padding: 10px 0px;
+    padding: 10px 0;
     color: #212121;
     box-shadow: 2px 2px 2px #ededed;
+    margin-bottom: 50px;
 }
 
 h1.title {
