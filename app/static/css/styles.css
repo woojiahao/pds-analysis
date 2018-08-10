@@ -34,6 +34,11 @@ ul {
     display: inline;
 }
 
+a {
+    text-decoration: none;
+    color: #757575;
+}
+
 nav {
     margin-top: 15px;
 }
