@@ -9,10 +9,13 @@
     <h1 class="title">Population Analysis</h1>
     <nav>
         <ul>
-            <li>Home</li>
-            <li>About</li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
         </ul>
     </nav>
 </header>
+
+{% block content %}
+{% endblock %}
 </body>
 </html>
