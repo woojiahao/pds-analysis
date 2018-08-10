@@ -34,7 +34,7 @@ pip isntall flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 
 ### Pre-requisites:
 1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/blob/master/readme.md#setting-up-postgres)
-2. [Modules needed](https://github.com/woojiahao/pds-analysis/blob/master/readme.md#required-modules) 
+2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
 
 You are able to load the application both on your local machine and on a Heroku server and the installation guide will go into detail on how to do both:
 
@@ -81,7 +81,7 @@ flask run
 6. Go to the localhost link, which should be: [http:localhost:5000/](http:localhost:5000/)
 
 ### Heroku instance
-This guide will be broken down into 2 segments, the first for [setting up Heroku](https://github.com/woojiahao/pds-analysis/blob/master/readme.md#setting-up-heroku) and the second to [set up this application](https://github.com/woojiahao/pds-analysis/blob/master/readme.md#setting-up-application):
+This guide will be broken down into 2 segments, the first for [setting up Heroku](https://github.com/woojiahao/pds-analysis#setting-up-heroku) and the second to [set up this application](https://github.com/woojiahao/pds-analysis#setting-up-application):
 
 #### Setting up Heroku:
 1. Install Heroku and the Heroku CLI to your local machine, in-depth instructions found [here](https://devcenter.heroku.com/articles/heroku-cli)
@@ -120,13 +120,17 @@ heroku run flask shell
 ...
 Data loaded
 ```
-3. Activate the web [dyno](https://www.heroku.com/dynos) to start the website
+3. Exit the flask shell:
+```bash
+>>> exit()
+```
+4. Activate the web [dyno](https://www.heroku.com/dynos) to start the website
 ```bash
 heroku ps:scale web=1
 
 Scaling dynos... done, now running web at 1:Free
 ```
-4. Open the webpage
+5. Open the webpage
 ```bash
 heroku open
 ```
