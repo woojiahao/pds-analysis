@@ -1,6 +1,7 @@
 from numpy.core.multiarray import ndarray
 from pandas import DataFrame
 from sqlalchemy import Table
+from sqlalchemy.engine import Engine
 from sqlalchemy.ext.declarative import declarative_base
 
 from app import db
@@ -8,9 +9,9 @@ from app import db
 
 class AlchemyManager:
 	def __init__(self):
-		self.engine = db.engine
+		self.engine: Engine = db.engine
 		self.Base = declarative_base(bind=self.engine)
-		self.metadata = db.metadata
+		self.metadata = self.Base.metadata
 
 	def has_table(self, tablename: str):
 		self.metadata.reflect(bind=self.engine)
