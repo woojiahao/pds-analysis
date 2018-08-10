@@ -1,4 +1,5 @@
-Flask
+flask
+flask-sqlalchemy
 SQLAlchemy
 gunicorn
 numpy
@@ -7,3 +8,4 @@ pandas
 SQLAlchemy-Utils
 psycopg2
 python-dotenv
+flask-migrate
