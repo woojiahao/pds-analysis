@@ -34,12 +34,6 @@ ul {
     display: inline;
 }
 
-a {
-    text-decoration: none;
-    text-decoration-color: inherit;
-    color: inherit;
-}
-
 nav {
     margin-top: 15px;
 }
@@ -80,4 +74,10 @@ nav > ul li:hover {
 
 nav > ul li:hover::before {
     transform: scaleY(1);
+}
+
+li > a {
+    text-decoration: none;
+    text-decoration-color: inherit;
+    color: inherit;
 }
