@@ -44,7 +44,7 @@ class AlchemyManager:
 				conn.execute(ins)
 
 	def __verify_connection__(self) -> tuple:
-		pattern = '^\w+:\/\/\w+:\w+\@\w+:\d+\/\w+$'
+		pattern = '^\w+:\/\/\w+:\w+\@[a-zA-Z0-9-.]+:\w+\/\w+$'
 		if re.match(pattern, self.conn_str) is None:
 			return False, 'Invalid format'
 
