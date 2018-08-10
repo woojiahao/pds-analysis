@@ -77,8 +77,12 @@ nav > ul li:hover::before {
     transform: scaleY(1);
 }
 
-li > a {
+a {
     text-decoration: none;
     text-decoration-color: inherit;
     color: inherit;
+}
+
+div.content {
+    margin: 0 50px;
 }
