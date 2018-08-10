@@ -37,7 +37,7 @@ pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
 3. Python3 
 
-You are able to load the application both on your local machine and on a Heroku server and the installation guide will go into detail on how to do both:
+You are able to load the application both on your local machine and on a Heroku server (**adviced**) and the installation guide will go into detail on how to do both:
 
 ### Local Instance
 1. Clone this repository and navigate into it
@@ -78,10 +78,10 @@ flask run
 ```
 6. Go to the localhost link, which should be: [http:localhost:5000/](http:localhost:5000/)
 
-### Heroku instance
+### Heroku instance (Adviced!)
 This guide will be broken down into 2 segments, the first for [setting up Heroku](https://github.com/woojiahao/pds-analysis#setting-up-heroku) and the second to [set up this application](https://github.com/woojiahao/pds-analysis#setting-up-application):
 
-#### Setting up Heroku:
+#### Setting up Heroku: 
 1. Install Heroku and the Heroku CLI to your local machine, in-depth instructions found [here](https://devcenter.heroku.com/articles/heroku-cli)
 2. Clone this repository and navigate into it
 ```bash
