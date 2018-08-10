@@ -1,25 +1,16 @@
-import re
-
 from numpy.core.multiarray import ndarray
 from pandas import DataFrame
-from sqlalchemy import create_engine, Table
+from sqlalchemy import Table
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy_utils import database_exists
+
+from app import db
 
 
 class AlchemyManager:
-	def __init__(self, conn_str: str):
-		self.conn_str = conn_str
-		conn_str_valid = self.__verify_connection__()
-		if not conn_str_valid[0]:
-			raise Exception(conn_str_valid[1])
-
-		if not database_exists(self.conn_str):
-			raise Exception(f'Database: {self.conn_str[self.conn_str.rfind("/") + 1 : ]} does not exist')
-
-		self.engine = create_engine(conn_str, pool_pre_ping=True)
+	def __init__(self):
+		self.engine = db.engine
 		self.Base = declarative_base(bind=self.engine)
-		self.metadata = self.Base.metadata
+		self.metadata = db.metadata
 
 	def has_table(self, tablename: str):
 		self.metadata.reflect(bind=self.engine)
@@ -42,10 +33,3 @@ class AlchemyManager:
 				print(row)
 				ins = table.insert(values=ndarray.tolist(row))
 				conn.execute(ins)
-
-	def __verify_connection__(self) -> tuple:
-		pattern = '^\w+:\/\/\w+:\w+\@[a-zA-Z0-9-.]+:\w+\/\w+$'
-		if re.match(pattern, self.conn_str) is None:
-			return False, 'Invalid format'
-
-		return True, 'Valid'

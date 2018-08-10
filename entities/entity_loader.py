@@ -4,9 +4,9 @@ from entities.entity import Entity
 
 
 class EntityLoader:
-	def __init__(self, conn_str: str):
+	def __init__(self):
 		self.entities = None
-		self.alchemy_manager = AlchemyManager(conn_str)
+		self.alchemy_manager = AlchemyManager()
 		self.writer = Writer(self.alchemy_manager)
 
 	def add_entity(self, entity: Entity):
