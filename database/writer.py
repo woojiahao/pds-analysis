@@ -19,14 +19,10 @@ class Writer:
 			raise Exception(f'{tablename} already exists in the database, please pick another table name')
 
 		if attrs is not None:
-			if '__tablename__' not in attrs:
-				print(f'No __tablename__ attribute found, using the one supplied: {tablename}')
-				attrs['__tablename__'] = tablename
-
 			num_cols = data_frame.shape[1]
-			if len(attrs) != num_cols + 1:
+			if len(attrs) != num_cols:
 				raise Exception(
-					f'Invalid number of columns, data frame requires {num_cols} columns, was given {len(attrs) - 1} columns')
+					f'Invalid number of columns, data frame requires {num_cols} columns, was given {len(attrs)} columns')
 
 			self.__check_attrs__(data_frame, attrs)
 
@@ -67,9 +63,6 @@ class Writer:
 				attr_dict[columm_name] = Column(dtype, primary_key=columm_name in primary_keys)
 		else:
 			for column_name, attributes in attrs.items():
-				if column_name is '__tablename__':
-					continue
-
 				dtype = None
 				data_type = attributes['dtype']
 				if data_type == DataTypes.INT64:
@@ -96,7 +89,7 @@ class Writer:
 	def __is_valid_pk__(self, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None) -> tuple:
 		if primary_keys is None:
 			primary_keys = [column_name for column_name, attributes in attrs.items()
-							if column_name is not '__tablename__' and attributes['primary_key']]
+							if attributes['primary_key']]
 		else:
 			for primary_key in primary_keys:
 				if primary_key not in data_frame.columns:
@@ -115,14 +108,7 @@ class Writer:
 	def __match_attr__(self, data_frame: DataFrame, attrs: dict) -> DataFrame:
 		col_names = { }
 		for column_name, attributes in attrs.items():
-			if column_name is '__tablename__':
-				continue
-
 			if column_name not in data_frame.columns:
-				if 'backing' not in attributes:
-					raise Exception(
-						f'Specify a backing attribute if you are not using the default column name ({column_name}) in the data frame')
-
 				col_names[attributes['backing']] = column_name
 			else:
 				col_names[column_name] = column_name
@@ -138,11 +124,21 @@ class Writer:
 		+ primary_key -> True/False
 		+ size -> Applicable for STR only
 		+ backing -> if the column name does not match up with the df column, refer to this field
+
+		Sample:
+		attrs = {
+			'year': {
+				'dtype': DataTypes.INT64,
+				'primary_key': True
+			},
+			'cost': {
+				'dtype': DataTypes.FLOAT64,
+				'primary_key': False,
+				'backing': 'value'
+			}
+		}
 		"""
 		for column_name, attributes in attrs.items():
-			if column_name is '__tablename__':
-				continue
-
 			if 'dtype' not in attributes:
 				raise Exception(f'Data type of column: {column_name} not specified')
 			if 'primary_key' not in attributes:

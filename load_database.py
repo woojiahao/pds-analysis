@@ -9,7 +9,6 @@ live_births = Entity(
 	tablename='live_births',
 	file_name='data/live-births.csv',
 	attrs={
-		'__tablename__': 'live_births',
 		'year': {
 			'dtype': DataTypes.INT64,
 			'primary_key': True
@@ -33,7 +32,6 @@ occupations = Entity(
 	tablename='mothers_occupations',
 	file_name='data/live-births-by-occupation-of-mother-and-birth-order.csv',
 	attrs={
-		'__tablename__': 'mothers_occupations',
 		'month': {
 			'dtype': DataTypes.DATETIME,
 			'primary_key': True
@@ -58,7 +56,6 @@ enrolment = Entity(
 	tablename='enrolment',
 	file_name='data/primary-enrolment-by-age.csv',
 	attrs={
-		'__tablename__': 'enrolment',
 		'year': {
 			'dtype': DataTypes.INT64,
 			'primary_key': True
@@ -84,7 +81,6 @@ gdp = Entity(
 	tablename='gdp',
 	file_name='data/gross-domestic-product-at-current-market-prices-annual.csv',
 	attrs={
-		'__tablename__': 'gdp',
 		'year': {
 			'dtype': DataTypes.INT64,
 			'primary_key': True
