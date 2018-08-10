@@ -19,7 +19,7 @@ Analysis of the data sets found at [https://data.gov.sg/](https://data.gov.sg/),
 10. python-dotenv
 
 ```bash
-pip isntall flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matplotlib pandas psycopg2 python-dotenv
+pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matplotlib pandas psycopg2 python-dotenv
 ```
 
 **Explanation:**
