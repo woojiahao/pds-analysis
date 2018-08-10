@@ -33,7 +33,7 @@ pip isntall flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 * `python-dotenv` is used to provide support for `.env` files that the local copy of the application will be working on
 
 ### Pre-requisites:
-1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/blob/master/readme.md#setting-up-postgres)
+1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgres)
 2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
 
 You are able to load the application both on your local machine and on a Heroku server and the installation guide will go into detail on how to do both:
@@ -134,3 +134,9 @@ Scaling dynos... done, now running web at 1:Free
 ```bash
 heroku open
 ```
+
+### Setting up PostgreSQl
+1. Download PostgreSQL for the operating system you are on: [Download](https://www.postgresql.org/download/), make sure you download pgAdmin as well 
+2. You are free to select any username, password and port for the installation, but take note that modifying it would require some additional configurations when running the application locally
+3. After PostgreSQL is installed, open pgAdmin and create a new database called `pds` (feel free to name it whatever, but like the previous step, changing this will require additional configuration)
+4. Continue with the [installation guide](https://github.com/woojiahao/pds-analysis#pre-requisites)
