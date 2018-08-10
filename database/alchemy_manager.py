@@ -1,6 +1,5 @@
 from numpy.core.multiarray import ndarray
 from pandas import DataFrame
-from sqlalchemy import Table
 from sqlalchemy.engine import Engine
 from sqlalchemy.ext.declarative import declarative_base
 
