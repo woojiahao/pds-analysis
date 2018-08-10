@@ -33,7 +33,7 @@ pip isntall flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 * `python-dotenv` is used to provide support for `.env` files that the local copy of the application will be working on
 
 ### Pre-requisites:
-1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgres)
+1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql)
 2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
 
 You are able to load the application both on your local machine and on a Heroku server and the installation guide will go into detail on how to do both:
