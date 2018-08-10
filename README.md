@@ -35,6 +35,7 @@ pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 ### Pre-requisites:
 1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql)
 2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
+3. Python3 
 
 You are able to load the application both on your local machine and on a Heroku server and the installation guide will go into detail on how to do both:
 
@@ -44,17 +45,14 @@ You are able to load the application both on your local machine and on a Heroku 
 git clone https://github.com/woojiahao/pds-analysis.git
 cd pds-analysis
 ```
-2. If you have modified aspects of the postgres database, you will have to configure the `config.json`, and alter the `local_database_url` value to match the modified connection string, otherwise, if you followed the set-up guide for PostgreSQL earlier, then skip this step
+2. If you have modified aspects of the postgres database, you will have to configure the `config.py`, and alter the second `or` condition to match the modified connection string, otherwise, if you followed the set-up guide for PostgreSQL earlier, then skip this step
 ```bash
 cd pds-analysis
-cd config 
-vim config.json
+vim config.py
 
-{
-    "local_database_url": "modified connection string"
-}
-
-:wq!
+import os
+class Config:
+	DATABASE_CONNECTION_STRING = os.getenv('DATABASE_URL') or '<your database connection string>'
 ```
 3. Now to load the data into the database from the `.csv` files
 ```bash
