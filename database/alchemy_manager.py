@@ -23,7 +23,7 @@ class AlchemyManager:
 	def create_table(self, attr_dict: dict):
 		table = type(attr_dict['__tablename__'], (self.Base,), attr_dict)
 		table.extend_existing = True
-		db.create_all(self.engine)
+		db.create_all()
 		print(f'{attr_dict["__tablename__"]} has been created')
 
 	def populate_table(self, data_frame: DataFrame, tablename: str):
