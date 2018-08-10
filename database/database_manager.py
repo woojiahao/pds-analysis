@@ -12,8 +12,10 @@ class Manager:
 	def load_data(self):
 		self.__load_entities__()
 		if not self.__has_database__():
+			print('Data not loaded yet, loading now')
 			self.entity_loader.add_entities(self.entities)
 			self.entity_loader.load_all()
+			print('Data loaded')
 
 	def __has_database__(self) -> bool:
 		has_table = True
