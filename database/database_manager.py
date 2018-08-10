@@ -6,6 +6,7 @@ from entities.entity_loader import EntityLoader
 
 class Manager:
 	def __init__(self):
+		print(Config.DATABASE_CONNECTION_STRING)
 		self.entity_loader = EntityLoader(Config.DATABASE_CONNECTION_STRING)
 		self.entities = []
 
