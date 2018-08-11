@@ -6,18 +6,22 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 </head>
 <body>
-<nav>
-	<div class="nav-wrapper">
-		<a href="#" class="brand-logo">Population Analysis</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="{{ url_for('home') }}">Home</a></li>
-			<li><a href="{{ url_for('about') }}">About</a></li>
-		</ul>
-	</div>
-</nav>
+<div class="navbar-fixed">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">Population Analysis</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="{{ url_for('home') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+			</ul>
+		</div>
+	</nav>
+</div>
 
 {% block content %}
 {% endblock %}
+
+<div class="spacing" style="height: 1000px"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </body>

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
 * {
     -webkit-box-sizing: border-box;
@@ -9,11 +11,15 @@
 }
 
 body {
-    font-size: 16px;
+    font-size: 20px;
     overflow-x: hidden;
     width: 100%;
     background-color: #fafafa;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
 }
 
 ul {
@@ -39,3 +45,4 @@ a {
     color: #1565C0;
     text-decoration: underline;
 }
+
