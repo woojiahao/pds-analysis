@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container">
+		<div class="clearfix nav-buttons">
+			<a href="{{ url_for('home') }}" class="btn btn-info float-left" role="button">< Back</a>
+			<a href="{{ url_for('effects') }}" class="btn btn-info float-right" role="button">Next ></a>
+		</div>
+		<h1>Effects of declining population</h1>
+		<p>
+			There are several indications of this declining population, and one of them is the steady decline of <a
+				href="https://data.gov.sg/dataset/enrolment-primary-by-age" target="_blank">primary enrolment:</a>
+		</p>
+		<a id="switch-male" class="waves-effect waves-light btn">Male</a>
+		<a id="switch-female" class="waves-effect waves-light btn">Female</a>
+		<figure class="border" id="enrolment-fig">
+			<embed type="image/svg+xml" src="{{ enrolment_line_male.render_data_uri() }}"/>
+		</figure>
+	</div>
+{% endblock %}

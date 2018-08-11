@@ -22,3 +22,7 @@ a.btn {
 nav, .introduction {
     margin-bottom: 30px;
 }
+
+.nav-buttons {
+    margin-bottom: 15px;
+}

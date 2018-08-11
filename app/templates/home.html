@@ -1,22 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-	<script>
-        $(document).ready(function () {
-            $('#switch-male').click(function () {
-                $.ajax("{{ url_for('processing', switch='MALE') }}").done(function (reply) {
-                    $('#enrolment-fig embed').attr("src", reply);
-                });
-            });
-
-            $('#switch-female').click(function () {
-                $.ajax("{{ url_for('processing', switch='FEMALE') }}").done(function (reply) {
-                    $('#enrolment-fig embed').attr("src", reply);
-                });
-            });
-        });
-	</script>
-
 	<div class="container">
+		<div class="clearfix nav-buttons">
+			<a href="{{ url_for('effects') }}" class="btn btn-info float-right" role="button">Next ></a>
+		</div>
 		<section class="introduction">
 			<h1>Introduction</h1>
 			<blockquote class="blockquote text-right">
@@ -34,16 +21,5 @@
 				by analyzing data sets and trying to match the claims with the data.
 			</p>
 		</section>
-
-		<h1>Effects of declining population</h1>
-		<p>
-			There are several indications of this declining population, and one of them is the steady decline of <a
-				href="https://data.gov.sg/dataset/enrolment-primary-by-age" target="_blank">primary enrolment:</a>
-		</p>
-		<a id="switch-male" class="waves-effect waves-light btn">Male</a>
-		<a id="switch-female" class="waves-effect waves-light btn">Female</a>
-		<figure class="border" id="enrolment-fig">
-			<embed type="image/svg+xml" src="{{ enrolment_line_male.render_data_uri() }}"/>
-		</figure>
 	</div>
 {% endblock %}
