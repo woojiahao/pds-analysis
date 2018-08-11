@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% block navigation %}
+	<div class="clearfix nav-buttons">
+		<a href="{{ url_for('home') }}"
+		   class="btn btn-info float-left"
+		   role="button">< Back</a>
+		<a href="{{ url_for('hypothesis') }}"
+		   class="btn btn-info float-right"
+		   role="button">Next ></a>
+	</div>
+{% endblock %}
 {% block content %}
 	<script>
         function switchPlot(toSwitch) {
@@ -23,15 +33,6 @@
         }
 	</script>
 
-	<div class="clearfix nav-buttons">
-		<a href="{{ url_for('home') }}"
-		   class="btn btn-info float-left"
-		   role="button">< Back</a>
-		<a href="{{ url_for('hypothesis') }}"
-		   class="btn btn-info float-right"
-		   role="button">Next ></a>
-	</div>
-	<h1>Effects of declining population</h1>
 	<p>
 		When looking through the data sets available, one of them stood out to me the most, and that was the
 		<a href="https://data.gov.sg/dataset/enrolment-primary-by-age"

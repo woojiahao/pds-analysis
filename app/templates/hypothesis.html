@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block navigation %}
 	<div class="clearfix nav-buttons">
 		<a href="{{ url_for('effects') }}"
 		   class="btn btn-info float-left"
@@ -8,7 +8,8 @@
 		   class="btn btn-info float-right"
 		   role="button">Next ></a>
 	</div>
-	<h1>Hypothesis</h1>
+{% endblock %}
+{% block content %}
 	<p>
 		From that data, it was very clear that something was going on with the enrolment rate. One of the
 		most logical reasons for why the enrolment rate has begun to decline is due to the decrease of the

@@ -11,7 +11,7 @@ def home():
 
 @app.route('/effects')
 def effects():
-	return render_template('effects.html', page='Effects')
+	return render_template('effects.html', page='Effects of declining population')
 
 @app.route('/hypothesis')
 def hypothesis():
