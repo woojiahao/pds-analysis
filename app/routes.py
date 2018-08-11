@@ -9,6 +9,14 @@ def home():
 	return render_template('home.html', page='Home')
 
 
+@app.route('/effects')
+def effects():
+	return render_template('effects.html', page='Effects')
+
+@app.route('/hypothesis')
+def hypothesis():
+	return render_template('hypothesis.html', page='Hypothesis')
+
 @app.route('/setup')
 def setup():
 	return render_template('setup.html', page='Set-Up')
@@ -17,10 +25,3 @@ def setup():
 @app.route('/about')
 def about():
 	return render_template('about.html', page='About')
-
-
-@app.route('/effects')
-def effects():
-	return render_template(
-		'effects.html',
-		page='Effects')
