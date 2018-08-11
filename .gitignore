@@ -106,3 +106,6 @@ venv.bak/
 # pycharm
 *.iml
 .idea/
+
+# custom
+sandbox.py
