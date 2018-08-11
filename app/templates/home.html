@@ -23,8 +23,7 @@
 				href="https://data.gov.sg/dataset/enrolment-primary-by-age" target="_blank">primary enrolment:</a>
 		</p>
 		<figure>
-			{{ enrolment_line_male.render() | safe }}
-			<figcaption>Primary enrolment - Male</figcaption>
+			<embed type="image/svg+xml" src="{{ enrolment_line_male.render_data_uri() }}"/>
 		</figure>
 	</div>
 {% endblock %}

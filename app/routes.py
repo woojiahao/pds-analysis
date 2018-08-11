@@ -1,3 +1,4 @@
+import pygal
 from flask import render_template
 
 from app import app
@@ -10,6 +11,7 @@ from plotting.enrolment import Enrolment, Genders
 @app.route('/analysis')
 def home():
 	enrolment = Enrolment(db.engine)
+
 	return render_template(
 		'home.html',
 		page='Home',
