@@ -11,6 +11,10 @@ def home():
 	return render_template('home.html', page='Home')
 
 
+@app.route('/setup')
+def setup():
+	return render_template('setup.html', page='Set-Up')
+
 @app.route('/about')
 def about():
 	return render_template('about.html', page='About')
