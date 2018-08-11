@@ -2,7 +2,7 @@ import numpy as np
 import pygal as pygal
 from sqlalchemy.engine import Engine
 
-from plotting.plot import Plot
+from plotting.custom_styles import style
 
 
 class Genders:
@@ -29,7 +29,7 @@ class Enrolment:
 		return f'Primary Enrolment {gender["title"]} - By Age'
 
 	def plot_line(self, gender):
-		line_chart = pygal.Line(x_label_rotation=270)
+		line_chart = pygal.Line(x_label_rotation=270, style=style)
 		line_chart.title = self.generate_title(gender)
 		year_range = self.get_year_range()
 		line_chart.x_labels = map(str, np.arange(year_range['min'], year_range['max']))
@@ -37,7 +37,8 @@ class Enrolment:
 		for age, data in ages.items():
 			line_chart.add(age, data)
 		return line_chart
-		# line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"]}'))
+
+	# line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"]}'))
 
 	def query_ages(self, gender):
 		ages = { }
