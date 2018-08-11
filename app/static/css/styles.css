@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
-
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -10,39 +6,19 @@
     padding: 0;
 }
 
-body {
-    font-size: 20px;
-    overflow-x: hidden;
-    width: 100%;
-    background-color: #fafafa;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Playfair Display", serif;
-}
-
 ul {
     list-style: none;
     display: inline;
 }
 
-nav ul li a {
-    font-size: 1.3rem;
+figure {
+    box-shadow: 2px 2px 2px #ededed;
 }
 
-nav .brand-logo {
-    margin-left: 1rem;
+a.btn {
+    margin-top: 20px;
 }
 
-a {
-    text-decoration: none;
-    text-decoration-color: inherit;
-    color: inherit;
+nav, .introduction {
+    margin-bottom: 30px;
 }
-
-.about a {
-    color: #1565C0;
-    text-decoration: underline;
-}
-

@@ -32,7 +32,7 @@ class Enrolment:
 		line_chart = pygal.Line(x_label_rotation=270, style=style)
 		line_chart.title = self.generate_title(gender)
 		year_range = self.get_year_range()
-		line_chart.x_labels = map(str, np.arange(year_range['min'], year_range['max']))
+		line_chart.x_labels = map(str, np.arange(year_range['min'], year_range['max'] + 1))
 		ages = self.query_ages(gender)
 		for age, data in ages.items():
 			line_chart.add(age, data)

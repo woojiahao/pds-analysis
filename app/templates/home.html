@@ -1,28 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div class="container">
-		<h2>Introduction</h2>
-		<p>
-			One of the problems that Singapore is facing is the problem of a declining population. In
-			<a href="https://www.straitstimes.com/politics/parliament-no-major-changes-expected-to-immigration-policy-josephine-teo"
-			   target="_blank">an article</a> about the issue, Mrs Josephine Teo, mentioned:
-		</p>
-		<blockquote>
-			Singapore is not expected to change its immigration policy, and its population is likely to be
-			"significantly below" 6.9 million by 2030
-		</blockquote>
-		<p>
-			This is an intriguing problem since in school, we are taught about this declining population and the
-			possible causes of it, but we have never seen this problem taking effect, so, what better way to do it than
-			by analyzing data sets and trying to match the claims with the data.
-		</p>
+	<script>
+        $(document).ready(function () {
+            $('#switch-male').click(function () {
+                $.ajax("{{ url_for('processing', switch='MALE') }}").done(function (reply) {
+                    $('#enrolment-fig embed').attr("src", reply);
+                });
+            });
 
-		<h2>Effects of declining population</h2>
+            $('#switch-female').click(function () {
+                $.ajax("{{ url_for('processing', switch='FEMALE') }}").done(function (reply) {
+                    $('#enrolment-fig embed').attr("src", reply);
+                });
+            });
+        });
+	</script>
+
+	<div class="container">
+		<section class="introduction">
+			<h1>Introduction</h1>
+			<blockquote class="blockquote text-right">
+				<p class="mb-0">
+					Singapore is not expected to change its immigration policy, and its population is likely to be
+					"significantly below" 6.9 million by 2030</p>
+				<footer class="blockquote-footer">Mrs Josephine Teo in <cite title="Source Title">The Straits
+					Times</cite>
+				</footer>
+			</blockquote>
+			<p>
+				This is an intriguing problem since in school, we are taught about this declining population and the
+				possible causes of it, but we have never seen this problem taking effect, so, what better way to do it
+				than
+				by analyzing data sets and trying to match the claims with the data.
+			</p>
+		</section>
+
+		<h1>Effects of declining population</h1>
 		<p>
 			There are several indications of this declining population, and one of them is the steady decline of <a
 				href="https://data.gov.sg/dataset/enrolment-primary-by-age" target="_blank">primary enrolment:</a>
 		</p>
-		<figure>
+		<a id="switch-male" class="waves-effect waves-light btn">Male</a>
+		<a id="switch-female" class="waves-effect waves-light btn">Female</a>
+		<figure class="border" id="enrolment-fig">
 			<embed type="image/svg+xml" src="{{ enrolment_line_male.render_data_uri() }}"/>
 		</figure>
 	</div>

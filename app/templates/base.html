@@ -3,27 +3,24 @@
 	<meta charset="UTF-8">
 	<title>Population Analysis | {{ page }}</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
 	<script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
 	<script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
+	<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<div class="navbar-fixed">
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo">Population Analysis</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="{{ url_for('home') }}">Home</a></li>
-				<li><a href="{{ url_for('about') }}">About</a></li>
-			</ul>
-		</div>
-	</nav>
-</div>
+<nav class="navbar navbar-light justify-content-end" style="background-color: #e3f2fd;">
+	<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+	<a class="nav-link" href="{{ url_for('about') }}">About</a>
+</nav>
 
 {% block content %}
 {% endblock %}
 
-<div class="spacing" style="height: 1000px"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </body>
 </html>
