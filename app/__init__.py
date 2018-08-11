@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 from plotting.enrolment import Enrolment, Genders
+from plotting.enrolment_live_birth import EnrolmentLiveBirth
 from plotting.live_birth_rates import LiveBirthRate
 
 app = Flask(__name__)
@@ -19,5 +20,9 @@ enrolment.plot_line_graph(Genders.BOTH)
 live_births = LiveBirthRate(db.engine)
 live_births.plot_line_graph()
 live_births.plot_bar_graph()
+
+correlation = EnrolmentLiveBirth(db.engine)
+correlation.plot_wrong_scatter()
+correlation.plot_right_scatter()
 
 from app import routes

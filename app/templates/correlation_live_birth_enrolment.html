@@ -10,5 +10,57 @@
 	</div>
 {% endblock %}
 {% block content %}
+	<p>
+		Based on the previous 2 findings, naturally, plotting a scatter plot of <strong>Primary Enrolment</strong>
+		against <strong>Live Birth Rates</strong>, there should be an <em>obvious</em> correlation between the
+		2 data sets since one would expect a lower rate of enrolment when there is a lower birth rate in that year.
+		<br>
+		<br>
+		<strong><em>Right?</em></strong>
+	</p>
 
+	<p>
+		Whilst that might seem to be the case, plotting the 2 data sets together will result in a very chaotic
+		scatter plot and for a good reason, babies born in year X will only be <em>able to enrol into primary school
+		after at least 6 years</em>, thus, there is a some disparity that we overlooked.
+		<br>
+		<br>
+		Altering the SQL query is as simple as changing the join condition to be <kbd>WHERE e.year = lb.year + 6</kbd>
+		instead of <kbd>WHERE e.year = lb.year</kbd>
+		<br>
+		<br>
+		Now, the correlation between live birth rate and primary enrolment is more prominent with the distribution
+		of the points in the scatter plot being far more collected, alleviating the initial problem.
+	</p>
+{% endblock %}
+{% block gallery %}
+	<div class="gallery">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a onclick="switchPlots('original')"
+				   id="original-tab"
+				   class="nav-link active"
+				   href="#">Original</a>
+			</li>
+			<li class="nav-item">
+				<a onclick="switchPlots('fixed')"
+				   id="fixed-tab"
+				   class="nav-link"
+				   href="#">Fixed</a>
+			</li>
+		</ul>
+		<div class="charts">
+			<figure class="border plot"
+					id="original">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/correlation_enrolment_live_birth_wrong.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="fixed"
+					style="display: none;">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/correlation_enrolment_live_birth_right.svg') }}"/>
+			</figure>
+		</div>
+	</div>
 {% endblock %}
