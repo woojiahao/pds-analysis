@@ -17,9 +17,10 @@ Analysis of the data sets found at [https://data.gov.sg/](https://data.gov.sg/),
 8. numpy
 9. matplotlib
 10. pandas
+11. pygal
 
 ```bash
-pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matplotlib pandas psycopg2 python-dotenv
+pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matplotlib pandas psycopg2 python-dotenv pygal
 ```
 
 **Explanation:**
@@ -31,6 +32,7 @@ pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 * `psycopg2` is a wrapper to provide connectivity to the PostgreSQL database and it is used with `SQLAlchemy` and by extension of that, `flask-sqlalchemy`
 * `python-dotenv` is used to provide support for `.env` files that the local copy of the application will be working on
 * `numpy`, `matplotlib` and `pandas` these are all for the data science part of the application
+* `pygal` is a data visualization library to reduces overhead for making interactive diagrams, instead allowing you to focus on making a nice plot
 
 ### Pre-requisites:
 1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql)
