@@ -1,18 +1,18 @@
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Population Analysis | {{ page }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"/>
+	<meta charset="UTF-8">
+	<title>Population Analysis | {{ page }}</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}"/>
 </head>
 <body>
 <header>
-    <h1 class="title">Population Analysis</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-        </ul>
-    </nav>
+	<h1 class="title">Population Analysis</h1>
+	<nav>
+		<ul>
+			<li><a href="{{ url_for('home') }}">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+		</ul>
+	</nav>
 </header>
 
 {% block content %}
