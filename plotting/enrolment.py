@@ -3,6 +3,7 @@ import pygal as pygal
 from sqlalchemy.engine import Engine
 
 from plotting.custom_styles import style
+from plotting.plot import Plot
 
 
 class Genders:
@@ -36,9 +37,8 @@ class Enrolment:
 		ages = self.query_ages(gender)
 		for age, data in ages.items():
 			line_chart.add(age, data)
-		return line_chart
 
-	# line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"]}'))
+		line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"].lower()}'))
 
 	def query_ages(self, gender):
 		ages = { }

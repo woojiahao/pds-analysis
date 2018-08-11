@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+	<script>
+        function switchPlot(toSwitch) {
+            let x = document.querySelectorAll('.plot');
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.querySelector('#' + toSwitch).style.display = "block";
+            if (toSwitch === 'male') {
+                document.querySelector('#male-tab').classList.add('active');
+                document.querySelector('#female-tab').classList.remove('active');
+            } else if (toSwitch === 'female') {
+                document.querySelector('#female-tab').classList.add('active');
+                document.querySelector('#male-tab').classList.remove('active');
+            }
+        }
+	</script>
+
 	<div class="container">
 		<div class="clearfix nav-buttons">
 			<a href="{{ url_for('home') }}" class="btn btn-info float-left" role="button">< Back</a>
@@ -10,10 +27,25 @@
 			There are several indications of this declining population, and one of them is the steady decline of <a
 				href="https://data.gov.sg/dataset/enrolment-primary-by-age" target="_blank">primary enrolment:</a>
 		</p>
-		<a id="switch-male" class="waves-effect waves-light btn">Male</a>
-		<a id="switch-female" class="waves-effect waves-light btn">Female</a>
-		<figure class="border" id="enrolment-fig">
-			<embed type="image/svg+xml" src="{{ enrolment_line_male.render_data_uri() }}"/>
-		</figure>
+		<div class="gallery">
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a onclick="switchPlot('male')" id="male-tab" class="nav-link active" href="#">Male</a>
+				</li>
+				<li class="nav-item">
+					<a onclick="switchPlot('female')" id="female-tab" class="nav-link" href="#">Female</a>
+				</li>
+			</ul>
+			<div class="charts">
+				<figure class="border plot" id="male">
+					<embed type="image/svg+xml"
+						   src="{{ url_for('static', filename='images/plots/enrolment_male.svg') }}"/>
+				</figure>
+				<figure class="border plot" id="female" style="display: none;">
+					<embed type="image/svg+xml"
+						   src="{{ url_for('static', filename='images/plots/enrolment_female.svg') }}"/>
+				</figure>
+			</div>
+		</div>
 	</div>
 {% endblock %}

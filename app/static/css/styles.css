@@ -11,18 +11,10 @@ ul {
     display: inline;
 }
 
-figure {
-    box-shadow: 2px 2px 2px #ededed;
-}
-
 a.btn {
     margin-top: 20px;
 }
 
-nav, .introduction {
+nav, .introduction, .nav-buttons {
     margin-bottom: 30px;
-}
-
-.nav-buttons {
-    margin-bottom: 15px;
 }

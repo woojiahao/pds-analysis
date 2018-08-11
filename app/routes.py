@@ -5,8 +5,6 @@ from app import db
 from plotting.enrolment import Enrolment, Genders
 
 
-# todo: render all the plots and save them, then use the saved plots instead of rendering everytime
-
 @app.route('/')
 @app.route('/home')
 def home():
