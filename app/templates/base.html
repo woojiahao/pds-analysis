@@ -7,10 +7,13 @@
 </head>
 <body>
 <nav>
-	<ul>
-		<li><a href="{{ url_for('home') }}">Home</a></li>
-		<li><a href="{{ url_for('about') }}">About</a></li>
-	</ul>
+	<div class="nav-wrapper">
+		<a href="#" class="brand-logo">Population Analysis</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="{{ url_for('home') }}">Home</a></li>
+			<li><a href="{{ url_for('about') }}">About</a></li>
+		</ul>
+	</div>
 </nav>
 
 {% block content %}

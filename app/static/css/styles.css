@@ -21,25 +21,14 @@ ul {
     display: inline;
 }
 
-nav {
-    margin-top: 1rem;
-}
-
-nav > ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    color: #757575;
-}
-
-nav > ul li a {
+nav ul li a {
     font-size: 1.3rem;
 }
 
-nav > ul li:not(:last-child) {
-    margin-right: 2rem;
+nav .brand-logo {
+    margin-left: 1rem;
 }
+
 a {
     text-decoration: none;
     text-decoration-color: inherit;
