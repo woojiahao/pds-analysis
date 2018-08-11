@@ -59,6 +59,9 @@
 				   href="{{ url_for('hypothesis') }}">Hypothesis</a>
 				<a class="dropdown-item"
 				   href="{{ url_for('live_births_rate') }}">Live birth rate</a>
+				<a class="dropdown-item"
+				   href="{{ url_for('correlation_live_birth_enrolment') }}">Correlation between live birth
+					rate and primary enrolment</a>
 			</div>
 		</li>
 		<li class="nav-item">
@@ -73,10 +76,11 @@
 </nav>
 
 <div class="container">
-	{% block navigation %}
-	{% endblock %}
+
 	<h1>{{ page }}</h1>
 	{% block content %}
+	{% endblock %}
+	{% block navigation %}
 	{% endblock %}
 </div>
 
