@@ -16,6 +16,10 @@ a.btn {
     margin-top: 20px;
 }
 
-nav, .introduction, .nav-buttons {
-    margin-bottom: 30px;
+nav, .introduction, .nav-buttons, .container {
+    margin-bottom:40px;
+}
+
+li:not(:last-child) {
+    margin-bottom: 20px;
 }

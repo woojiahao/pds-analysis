@@ -1,5 +1,87 @@
 {% extends 'base.html' %}
 {% block content %}
 	<div class="container">
+		<h1>Setting up</h1>
+		<h3>What is this for?</h3>
+		<p>
+			This project is open-source and that means you are able to host a copy of this website on your
+			own machine and web server.
+			<br>
+			<br>
+			The GitHub repository for this project can be found over <a
+				href="https://github.com/woojiahao/pds-analysis"
+				target="_blank">here</a>, a more technical
+			set-up guide can also be found there.
+		</p>
+
+		<h3>Pre-requisites:</h3>
+		<p>
+			You will need several things already installed on your machine before you can continue
+		</p>
+		<ol>
+			<li>python3</li>
+			<li>
+				All the modules required:
+				<br>
+				<kbd>pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matplotlib
+					pandas psycopg2 python-dotenv pygal
+				</kbd>
+			</li>
+			<li><a href="https://devcenter.heroku.com/articles/heroku-cli"
+				   target="_blank">Heroku</a></li>
+		</ol>
+
+		<h3>Installation Guide:</h3>
+		<ol>
+			<li>
+				Clone the repository
+				<br>
+				<kbd>git clone https://github.com/woojiahao/pds-analysis.git</kbd>
+			</li>
+			<li>
+				Navigate into the project folder
+				<br>
+				<kbd>cd pds-analysis</kbd>
+			</li>
+			<li>
+				Create a Heroku application, you can optionally give it a custom name
+				<br>
+				<kbd>heroku create &ltoptional custom name&gt</kbd>
+			</li>
+			<li>
+				Add the <a
+					href="https://elements.heroku.com/addons/heroku-postgresql">Heroku-Postgres</a>
+				add-on to the application
+				<br>
+				<kbd>heroku addons:create heroku-postgresql:hobby-dev</kbd>
+			</li>
+			<li>
+				Push the repository to Heroku
+				<br>
+				<kbd>git push -u heroku master</kbd>
+			</li>
+			<li>
+				Load the database
+				<br>
+				<kbd>heroku flask shell</kbd>
+				<br>
+				<kbd>&gt;&gt;&gt; Manager().load_data()</kbd>
+			</li>
+			<li>
+				Exit the shell
+				<br>
+				<kbd>&gt;&gt;&gt; exit()</kbd>
+			</li>
+			<li>
+				Activate the web dyno
+				<br>
+				<kbd>heroku ps:scale web=1</kbd>
+			</li>
+			<li>
+				Open the website
+				<br>
+				<kbd>heroku open</kbd>
+			</li>
+		</ol>
 	</div>
 {% endblock %}
