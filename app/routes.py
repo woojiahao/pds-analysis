@@ -45,15 +45,24 @@ def correlation_live_birth_enrolment():
 		'correlation_live_birth_enrolment.html',
 		page='Correlation between live birth rate and primary enrolment',
 		back=url_for('live_births_rate'),
-		next=url_for('occupation'))
+		next=url_for('causes'))
 
+
+@app.route('/causes')
+def causes():
+	return render_template(
+		'causes.html',
+		page='Potential causes of a declining population',
+		back=url_for('correlation_live_birth_enrolment'),
+		next=url_for('occupation')
+	)
 
 @app.route('/occupation')
 def occupation():
 	return render_template(
 		'occupation.html',
 		page='Mother\'s Occupation',
-		back=url_for('correlation_live_birth_enrolment'))
+		back=url_for('causes'))
 
 
 @app.route('/setup')
