@@ -10,8 +10,14 @@
             if (toSwitch === 'male') {
                 document.querySelector('#male-tab').classList.add('active');
                 document.querySelector('#female-tab').classList.remove('active');
+                document.querySelector('#both-tab').classList.remove('active');
             } else if (toSwitch === 'female') {
                 document.querySelector('#female-tab').classList.add('active');
+                document.querySelector('#male-tab').classList.remove('active');
+                document.querySelector('#both-tab').classList.remove('active');
+            } else if (toSwitch === 'both') {
+                document.querySelector('#both-tab').classList.add('active');
+                document.querySelector('#female-tab').classList.remove('active');
                 document.querySelector('#male-tab').classList.remove('active');
             }
         }
@@ -48,6 +54,12 @@
 					   class="nav-link"
 					   href="#">Female</a>
 				</li>
+				<li class="nav-item">
+					<a onclick="switchPlot('both')"
+					   id="both-tab"
+					   class="nav-link"
+					   href="#">Both</a>
+				</li>
 			</ul>
 			<div class="charts">
 				<figure class="border plot"
@@ -60,6 +72,12 @@
 						style="display: none;">
 					<embed type="image/svg+xml"
 						   src="{{ url_for('static', filename='images/plots/enrolment_female.svg') }}"/>
+				</figure>
+				<figure class="border plot"
+						id="both"
+						style="display: none;">
+					<embed type="image/svg+xml"
+						   src="{{ url_for('static', filename='images/plots/enrolment_both.svg') }}"/>
 				</figure>
 			</div>
 		</div>

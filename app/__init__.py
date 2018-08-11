@@ -11,7 +11,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 enrolment = Enrolment(db.engine)
-enrolment.plot_line(Genders.MALE)
-enrolment.plot_line(Genders.FEMALE)
+enrolment.plot_line_graph(Genders.MALE)
+enrolment.plot_line_graph(Genders.FEMALE)
+enrolment.plot_line_graph(Genders.BOTH)
 
 from app import routes
