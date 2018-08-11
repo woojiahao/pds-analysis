@@ -5,6 +5,7 @@ gunicorn
 numpy
 matplotlib
 pandas
+pygal
 psycopg2
 python-dotenv
 flask-migrate
