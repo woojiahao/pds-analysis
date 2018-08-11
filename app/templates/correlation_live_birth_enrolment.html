@@ -1,14 +1,4 @@
 {% extends 'base.html' %}
-{% block navigation %}
-	<div class="clearfix nav-buttons">
-		<a href="{{ url_for('live_births_rate') }}"
-		   class="btn btn-info float-left"
-		   role="button">< Back</a>
-		<a href="{{ url_for('correlation_live_birth_enrolment') }}"
-		   class="btn btn-info float-right"
-		   role="button">Next ></a>
-	</div>
-{% endblock %}
 {% block content %}
 	<p>
 		Based on the previous 2 findings, naturally, plotting a scatter plot of <strong>Primary Enrolment</strong>
