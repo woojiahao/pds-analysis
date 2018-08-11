@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-
+	<div class="clearfix nav-buttons">
+		<a href="{{ url_for('hypothesis') }}"
+		   class="btn btn-info float-left"
+		   role="button">< Back</a>
+		<a href="{{ url_for('live_births_rate') }}"
+		   class="btn btn-info float-right"
+		   role="button">Next ></a>
+	</div>
+	<h1>Live Birth Rates</h1>
+	<div class="gallery">
+		<div class="charts">
+			<figure class="border plot"
+					id="line">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/live_birth_line.svg') }}"/>
+			</figure>
+		</div>
 {% endblock %}

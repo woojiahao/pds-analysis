@@ -27,7 +27,7 @@ class Enrolment:
 			'UNDER 7 YRS', '7 YRS', '8 YRS', '9 YRS', '10 YRS',
 			'11 YRS', '12 YRS', '13 YRS', '14 YRS & OVER'
 		]
-		self.year_range = self.get_year_range()
+		self.year_range = Plot.get_year_range(self.engine, 'year', 'enrolment')
 
 	@staticmethod
 	def generate_title(gender):
@@ -53,17 +53,7 @@ class Enrolment:
 			else:
 				query = f'SELECT * FROM enrolment WHERE sex=\'{gender["value"]}\' AND age=\'{age}\';'
 
-			print(query)
 			result = self.engine.execute(query)
 			for row in result:
 				ages[age].append(row['enrolment'])
 		return ages
-
-	def get_year_range(self):
-		query = 'SELECT MIN(DISTINCT(year)) AS "min_year", MAX(DISTINCT(year)) AS "max_year" from enrolment;'
-		result = self.engine.execute(query)
-		years = { }
-		for row in result:
-			years['min'] = row[0]
-			years['max'] = row[1]
-		return years

@@ -15,7 +15,11 @@ def effects():
 
 @app.route('/hypothesis')
 def hypothesis():
-	return render_template('hypothesis.html', page='Hypothesis')
+	return render_template('hypothesis.html', page='Hypothesis')\
+
+@app.route('/live-births-rate')
+def live_births_rate():
+	return render_template('live_births.html', page='Live Births Rate')
 
 @app.route('/setup')
 def setup():
