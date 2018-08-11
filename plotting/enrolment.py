@@ -36,7 +36,8 @@ class Enrolment:
 		ages = self.query_ages(gender)
 		for age, data in ages.items():
 			line_chart.add(age, data)
-		line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"]}'))
+		return line_chart
+		# line_chart.render_to_file(Plot.generate_plot_name(f'enrolment_{gender["title"]}'))
 
 	def query_ages(self, gender):
 		ages = { }
