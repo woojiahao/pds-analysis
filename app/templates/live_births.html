@@ -10,12 +10,107 @@
 	</div>
 {% endblock %}
 {% block content %}
+	<p>
+		After analyzing <a href="https://data.gov.sg/dataset/births-and-fertility-annual"
+						   target="_blank">this data set.</a> I managed to confirm my original hypothesis, which
+		was that the <strong><em>declining rate of primary enrolment is caused by the declining
+		population.</em></strong>
+		<br>
+		<br>
+		However, there was 1 peculiar observation in the dataset, notice how from <strong>1986
+		to 1988</strong>, there was a sudden spike in the number of live births, from <strong>38,379
+		to 52,957.</strong>
+		<br>
+		<br>
+		This sudden spike is attributed to the establishment of the
+		<a href="https://www.msf.gov.sg/publications/Pages/Inter-Ministerial-Committee-(IMC)-Report-on-the-Ageing-Population-1999.aspx"
+		   target="_blank"><em>Inter-Ministerial Population Committee</em></a> in 1986, and later on, the
+		introduction of the <a href="http://eresources.nlb.gov.sg/history/events/1d106f7e-aca1-4c0e-ac7a-d35d0772707d"
+							   target="_blank"><em>Three or more if you can afford it</em></a>
+		policy that was implemented in 1987. This actually aligns well with the changes in the live births rate.
+	</p>
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">Year</th>
+			<th scope="col">Number of live births</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">1986</th>
+			<td>38,379</td>
+		</tr>
+		<tr>
+			<th scope="row">1987</th>
+			<td>43,616</td>
+		</tr>
+		<tr>
+			<th scope="row">1988</th>
+			<td>52,957</td>
+		</tr>
+		</tbody>
+	</table>
+	<p>Table: <em>Spikes in live birth rates between 1986 and 1988</em></p>
+	<br>
+	<p>
+		Other spikes could also be attributed to other reasons, such as the spike from <strong>1999 to 2000</strong>
+		caused by the year of 2000 being the <em>Year of the Dragon</em> which is an auspicious year in which more
+		Chinese couples will try for a baby.
+		<br>
+		<br>
+		From this data set, it is very obvious that whilst the government has been putting in place many different
+		birth policies to encourage its citizens to give birth, most do not see a lot of success, apart from the
+		<em>Three or more if you can afford it</em> policy.
+	</p>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">Year</th>
+			<th scope="col">Number of live births</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">1999</th>
+			<td>43,336</td>
+		</tr>
+		<tr>
+			<th scope="row">2000</th>
+			<td>46,997</td>
+		</tr>
+		</tbody>
+	</table>
+	<p>Table: <em>Spikes in live birth rates due to the Year of the Dragon</em></p>
+
 	<div class="gallery">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a onclick="switchPlots('line')"
+				   id="line-tab"
+				   class="nav-link active"
+				   href="#">Line</a>
+			</li>
+			<li class="nav-item">
+				<a onclick="switchPlots('bar')"
+				   id="bar-tab"
+				   class="nav-link"
+				   href="#">Bar</a>
+			</li>
+		</ul>
 		<div class="charts">
 			<figure class="border plot"
 					id="line">
 				<embed type="image/svg+xml"
 					   src="{{ url_for('static', filename='images/plots/live_birth_line.svg') }}"/>
 			</figure>
+			<figure class="border plot"
+					id="bar"
+					style="display: none;">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/live_birth_bar.svg') }}"/>
+			</figure>
 		</div>
+	</div>
 {% endblock %}

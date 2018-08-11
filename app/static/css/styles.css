@@ -27,3 +27,7 @@ ol li:not(:last-child) {
 h3 {
     margin-top: 30px;
 }
+
+.gallery {
+    margin-top: 30px;
+}

@@ -24,6 +24,22 @@
 			crossorigin="anonymous"></script>
 </head>
 <body>
+<script>
+    function switchPlots(toSwitch) {
+        const navItems = document.querySelectorAll('.gallery .nav-item a');
+        const plots = document.querySelectorAll('.charts .plot');
+        for (let i = 0; i < plots.length; i++) {
+            plots[i].style.display = 'none';
+        }
+        document.querySelector('#' + toSwitch).style.display = "block";
+
+        for (let i = 0; i < navItems.length; i++) {
+            navItems[i].classList.remove('active');
+        }
+        document.querySelector('#' + toSwitch + '-tab').classList.add('active');
+    }
+</script>
+
 <nav class="navbar navbar-expand-sm navbar-light justify-content-end"
 	 style="background-color: #e3f2fd;">
 	<ul class="navbar-nav">

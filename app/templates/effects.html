@@ -10,29 +10,6 @@
 	</div>
 {% endblock %}
 {% block content %}
-	<script>
-        function switchPlot(toSwitch) {
-            let x = document.querySelectorAll('.plot');
-            for (let i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            document.querySelector('#' + toSwitch).style.display = "block";
-            if (toSwitch === 'male') {
-                document.querySelector('#male-tab').classList.add('active');
-                document.querySelector('#female-tab').classList.remove('active');
-                document.querySelector('#both-tab').classList.remove('active');
-            } else if (toSwitch === 'female') {
-                document.querySelector('#female-tab').classList.add('active');
-                document.querySelector('#male-tab').classList.remove('active');
-                document.querySelector('#both-tab').classList.remove('active');
-            } else if (toSwitch === 'both') {
-                document.querySelector('#both-tab').classList.add('active');
-                document.querySelector('#female-tab').classList.remove('active');
-                document.querySelector('#male-tab').classList.remove('active');
-            }
-        }
-	</script>
-
 	<p>
 		When looking through the data sets available, one of them stood out to me the most, and that was the
 		<a href="https://data.gov.sg/dataset/enrolment-primary-by-age"
@@ -43,19 +20,19 @@
 	<div class="gallery">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a onclick="switchPlot('male')"
+				<a onclick="switchPlots('male')"
 				   id="male-tab"
 				   class="nav-link active"
 				   href="#">Male</a>
 			</li>
 			<li class="nav-item">
-				<a onclick="switchPlot('female')"
+				<a onclick="switchPlots('female')"
 				   id="female-tab"
 				   class="nav-link"
 				   href="#">Female</a>
 			</li>
 			<li class="nav-item">
-				<a onclick="switchPlot('both')"
+				<a onclick="switchPlots('both')"
 				   id="both-tab"
 				   class="nav-link"
 				   href="#">Both</a>

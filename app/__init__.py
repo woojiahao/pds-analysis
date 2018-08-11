@@ -18,5 +18,6 @@ enrolment.plot_line_graph(Genders.BOTH)
 
 live_births = LiveBirthRate(db.engine)
 live_births.plot_line_graph()
+live_births.plot_bar_graph()
 
 from app import routes
