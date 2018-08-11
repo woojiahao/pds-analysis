@@ -61,7 +61,7 @@ nav > ul li::before {
     left: 0;
     right: 0;
     height: 3px;
-    background-color: #ff5252;
+    background-color: #2196F3;
     bottom: -5px;
     transform: scaleY(0);
     transform-origin: bottom;
@@ -70,7 +70,7 @@ nav > ul li::before {
 
 nav > ul li:hover {
     cursor: pointer;
-    color: #ff5252;
+    color: #2196F3;
 }
 
 nav > ul li:hover::before {
@@ -85,4 +85,9 @@ a {
 
 div.content {
     margin: 0 50px;
+}
+
+.about a {
+    color: #1565C0;
+    text-decoration: underline;
 }
