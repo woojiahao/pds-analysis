@@ -1,31 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div class="container">
-		<div class="clearfix nav-buttons">
-			<a href="{{ url_for('effects') }}"
-			   class="btn btn-info float-right"
-			   role="button">Next ></a>
-		</div>
-		<section class="introduction">
-			<h1>Introduction</h1>
-			<blockquote class="blockquote text-right">
-				<p class="mb-0">
-					Singapore is not expected to change its immigration policy, and its population is likely to be
-					"significantly below" 6.9 million by 2030</p>
-				<footer class="blockquote-footer">Mrs Josephine Teo in <cite title="Source Title">The Straits
-					Times</cite>
-				</footer>
-			</blockquote>
-			<p>
-				This is an interesting problem since we are taught about this in school and the government is
-				constantly discussing about it, but we don't always get to see how we conclude that such a problem
-				exists.
-			</p>
-
-			<p>
-				This website will walk you through the steps that I took to analyse the data as well as present you
-				with my findings from each of the data sets.
-			</p>
-		</section>
+	<div class="clearfix nav-buttons">
+		<a href="{{ url_for('effects') }}"
+		   class="btn btn-info float-right"
+		   role="button">Next ></a>
 	</div>
+	<section class="introduction">
+		<h1>Introduction</h1>
+		<blockquote class="blockquote text-right">
+			<p class="mb-0">
+				Singapore is not expected to change its immigration policy, and its population is likely to be
+				"significantly below" 6.9 million by 2030</p>
+			<footer class="blockquote-footer">Mrs Josephine Teo in <cite title="Source Title">The Straits
+				Times</cite>
+			</footer>
+		</blockquote>
+		<p>
+			This is an interesting problem since we are taught about this in school and the government is
+			constantly discussing about it, but we don't always get to see how we conclude that such a problem
+			exists.
+		</p>
+
+		<p>
+			This website will walk you through the steps that I took to analyse the data as well as present you
+			with my findings from each of the data sets.
+		</p>
+	</section>
 {% endblock %}
