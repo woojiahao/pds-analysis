@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% endblock %}
+{% block gallery %}
+	<div class="gallery">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a onclick="switchPlots('distribution')"
+				   id="distribution-tab"
+				   class="nav-link active"
+				   href="#">Distribution</a>
+			</li>
+			<li class="nav-item">
+				<a onclick="switchPlots('histogram')"
+				   id="histogram-tab"
+				   class="nav-link active"
+				   href="#">Histogram</a>
+			</li>
+		</ul>
+		<div class="charts">
+			<figure class="border plot"
+					id="distribution">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/occupation_bar.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="histogram"
+					style="display: none;">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/occupation_histogram_PERSONS NOT ECONOMICALLY ACTIVE_2015.svg') }}"/>
+			</figure>
+		</div>
+	</div>
+{% endblock %}

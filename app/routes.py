@@ -50,7 +50,10 @@ def correlation_live_birth_enrolment():
 
 @app.route('/occupation')
 def occupation():
-	return render_template('occupation.html', page='Mother\'s Occupation')
+	return render_template(
+		'occupation.html',
+		page='Mother\'s Occupation',
+		back=url_for('correlation_live_birth_enrolment'))
 
 
 @app.route('/setup')
