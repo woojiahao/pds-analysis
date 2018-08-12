@@ -38,5 +38,6 @@ job_vacancy.plot_line_graph()
 resale_price = ResalePrice(db.engine)
 resale_price.plot_histogram(FlatType.FOUR_ROOM, 2015)
 resale_price.plot_box_plot([FlatType.THREE_ROOM, FlatType.FOUR_ROOM, FlatType.FIVE_ROOM, FlatType.EXECUTIVE], 1)
+resale_price.plot_line_graph([FlatType.THREE_ROOM, FlatType.FOUR_ROOM, FlatType.FIVE_ROOM, FlatType.EXECUTIVE])
 
 from app import routes

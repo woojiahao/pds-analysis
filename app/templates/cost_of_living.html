@@ -39,14 +39,23 @@
 			   target="_blank">Job vacancy rate</a>
 		</li>
 	</ol>
+	<p>
+		First, the resale flat prices are shown to be increasingly expensive
+	</p>
 {% endblock %}
 {% block gallery %}
 	<div class="gallery">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
+				<a onclick="switchPlots('trend')"
+				   id="trend-tab"
+				   class="nav-link active"
+				   href="#">Flat Type Prices Trend</a>
+			</li>
+			<li class="nav-item">
 				<a onclick="switchPlots('prices')"
 				   id="prices-tab"
-				   class="nav-link active"
+				   class="nav-link"
 				   href="#">Flat Type Prices</a>
 			</li>
 			<li class="nav-item">
@@ -64,7 +73,13 @@
 		</ul>
 		<div class="charts">
 			<figure class="border plot"
-					id="prices">
+					id="trend">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/resale_price_trend.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="prices"
+					style="display: none;">
 				<embed type="image/svg+xml"
 					   src="{{ url_for('static', filename='images/plots/resale_price_distribution_box_Q1_all_time.svg') }}"/>
 			</figure>

@@ -17,6 +17,7 @@ class FlatType:
 class ResalePrice:
 	def __init__(self, engine):
 		self.engine = engine
+		self.quarters = self.get_quarters()
 
 	def plot_histogram(self, flat_type, year):
 		interval = 50000
@@ -46,6 +47,31 @@ class ResalePrice:
 
 		box_plot.render_to_file(Plot.generate_plot_name(f'resale_price_distribution_box_Q{quarter}_all_time'))
 
+	def plot_line_graph(self, flats):
+		data = self.query_trend_data(flats)
+		line_graph = pygal.Line(
+			style=style,
+			x_label_rotation=270
+		)
+		line_graph.x_labels = self.quarters
+		line_graph.title = 'Trend of resale prices (All time)'
+		for flat in flats:
+			line_graph.add(flat, data[flat])
+		line_graph.render_to_file(Plot.generate_plot_name('resale_price_trend'))
+
+	def query_trend_data(self, flats):
+		data = collections.OrderedDict()
+		for flat in flats:
+			query = f'SELECT quarter, SUM(price) ' \
+					f'FROM resale_price ' \
+					f'WHERE flat_type = \'{flat}\' ' \
+					f'GROUP BY quarter ' \
+					f'ORDER BY quarter;'
+			results = self.engine.execute(query)
+			data[flat] = [row['sum'] for row in results]
+
+		return data
+
 	def query_distribution_data(self, flats, quarter):
 		data = { }
 		for flat in flats:
@@ -59,6 +85,11 @@ class ResalePrice:
 		query = f'SELECT * FROM resale_price WHERE quarter LIKE \'{year}%%\' AND flat_type=\'{flat_type}\';'
 		results = self.engine.execute(query)
 		return sorted([row['price'] for row in results if row['price'] > 0])
+
+	def get_quarters(self):
+		query = 'SELECT DISTINCT quarter FROM resale_price ORDER BY quarter;'
+		results = self.engine.execute(query)
+		return [row['quarter'] for row in results]
 
 	def create_values(self, data, interval):
 		return [(len(value), int(key), int(key) + interval) for key, value in data.items()]
