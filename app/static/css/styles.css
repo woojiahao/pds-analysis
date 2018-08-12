@@ -31,3 +31,7 @@ h3, .gallery {
 ol:not(:last-child) {
     margin-bottom: 40px;
 }
+
+a {
+    cursor: pointer;
+}
