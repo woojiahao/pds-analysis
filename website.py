@@ -1,5 +1,4 @@
-from app import app
-from app import db
+from app import app, db
 from database.database_manager import Manager
 from plotting.plot_loader import PlotLoader
 
@@ -7,9 +6,10 @@ from plotting.plot_loader import PlotLoader
 @app.shell_context_processor
 def make_shell_context():
 	return {
-		'Manager': Manager,
+		'db_manager': Manager(),
 		'plot_loader': PlotLoader(db.engine)
 	}
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
