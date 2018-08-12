@@ -75,8 +75,8 @@ SELECT * FROM live_births;
 5. Load the plots into the project
 ```bash
 flask shell
- >>> plot_loader.load_plots()
- >>> exit()
+>>> plot_loader.load_plots()
+>>> exit()
 ```
 6. Run the application:
 ```bash
@@ -110,8 +110,11 @@ heroku  https://git.heroku.com/populationanalysis.git (push)
 origin  https://github.com/woojiahao/pds-analysis (fetch)
 origin  https://github.com/woojiahao/pds-analysis (push)
 ```
-5. Run the `heroku addons` command and check that there is an add-on for `heroku-postgresql`, if you don't visit [this site](https://elements.heroku.com/addons/heroku-postgresql), and click on the `Install Heroku Postgres` button, you will then be prompted to enter the name of the application you wish to add the addon to, specify the name of the app previously created in step 3 and select `Provision add-on`
-6. Verify that you are connected to the new PostgreSQL database provided by Heroku using `heroku config` and you should see that now there is an [environment variable](https://devcenter.heroku.com/articles/config-vars) for the database connection string
+5. Add Heroku-Postgres with:
+```bash
+heroku addons:create heroku-postgresql:hobby-dev 
+```
+6. Verify that you are connected to the new PostgreSQL database provided by Heroku using `heroku config` and you should see that now there is an [environment variable](https://devcenter.heroku.com/articles/config-vars) for the database connection string, called `DATABASE_URL`
 
 #### Setting up application:
 1. Follow [these steps](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql) to set up PostgreSQL on your local machine
