@@ -13,22 +13,22 @@ app.config['SQLALCHEMY_DATABASE_URI'] = Config.DATABASE_CONNECTION_STRING
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# enrolment = Enrolment(db.engine)
-# enrolment.plot_line_graph(Genders.MALE)
-# enrolment.plot_line_graph(Genders.FEMALE)
-# enrolment.plot_line_graph(Genders.BOTH)
-#
-# live_births = LiveBirthRate(db.engine)
-# live_births.plot_line_graph()
-# live_births.plot_bar_graph()
-#
-# correlation = EnrolmentLiveBirth(db.engine)
-# correlation.plot_wrong_scatter()
-# correlation.plot_right_scatter()
-#
-# occupation = Occupation(db.engine)
-# occupation.plot_line_graph()
-# occupation.plot_histogram(Jobs.UNEMPLOYED, 2015)
-# occupation.plot_bar_graph()
+enrolment = Enrolment(db.engine)
+enrolment.plot_line_graph(Genders.MALE)
+enrolment.plot_line_graph(Genders.FEMALE)
+enrolment.plot_line_graph(Genders.BOTH)
+
+live_births = LiveBirthRate(db.engine)
+live_births.plot_line_graph()
+live_births.plot_bar_graph()
+
+correlation = EnrolmentLiveBirth(db.engine)
+correlation.plot_wrong_scatter()
+correlation.plot_right_scatter()
+
+occupation = Occupation(db.engine)
+occupation.plot_line_graph()
+occupation.plot_histogram(Jobs.UNEMPLOYED, 2015)
+occupation.plot_bar_graph()
 
 from app import routes
