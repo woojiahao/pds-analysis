@@ -7,6 +7,7 @@ from plotting.enrolment_live_birth import EnrolmentLiveBirth
 from plotting.job_vacancy import JobVacancy
 from plotting.live_birth_rates import LiveBirthRate
 from plotting.occupation import Occupation, Jobs
+from plotting.resale_price import ResalePrice, FlatType
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -29,10 +30,13 @@ correlation.plot_right_scatter()
 
 occupation = Occupation(db.engine)
 occupation.plot_line_graph()
-occupation.plot_histogram(Jobs.UNEMPLOYED, 2015)
 occupation.plot_bar_graph()
 
 job_vacancy = JobVacancy(db.engine)
 job_vacancy.plot_line_graph()
+
+resale_price = ResalePrice(db.engine)
+resale_price.plot_histogram(FlatType.FOUR_ROOM, 2015)
+resale_price.plot_box_plot()
 
 from app import routes

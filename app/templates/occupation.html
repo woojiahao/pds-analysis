@@ -26,12 +26,6 @@
 		data available, you can clearly see that the number of live births by women in the
 		<strong>PERSONS NOT ECONOMICALLY ACTIVE</strong> category is significantly higher than that of the other
 		work categories, with only <strong>TECHNICIANS & ASSOCIATE PROFS</strong> being higher than that.
-		<br>
-		<br>
-		Now that we have confirmed that non-working women will generally have more children than working women,
-		we can then explore the exact distribution of live births for women who are not economically active in
-		2015. We want to see exactly which is the most common range of children that the non-working women are
-		having and from the histogram, you can see that it is between 1000 and 1050 babies.
 	</p>
 {% endblock %}
 {% block gallery %}
@@ -49,12 +43,6 @@
 				   class="nav-link"
 				   href="#">Bar</a>
 			</li>
-			<li class="nav-item">
-				<a onclick="switchPlots('histogram')"
-				   id="histogram-tab"
-				   class="nav-link"
-				   href="#">Histogram</a>
-			</li>
 		</ul>
 		<div class="charts">
 			<figure class="border plot"
@@ -67,12 +55,6 @@
 					style="display: none;">
 				<embed type="image/svg+xml"
 					   src="{{ url_for('static', filename='images/plots/occupation_bar.svg') }}"/>
-			</figure>
-			<figure class="border plot"
-					id="histogram"
-					style="display: none;">
-				<embed type="image/svg+xml"
-					   src="{{ url_for('static', filename='images/plots/occupation_histogram_PERSONS NOT ECONOMICALLY ACTIVE_2015.svg') }}"/>
 			</figure>
 		</div>
 	</div>
