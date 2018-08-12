@@ -1,6 +1,5 @@
 import collections
 import pygal
-import numpy as np
 
 from plotting.custom_styles import style
 from plotting.plot import Plot
@@ -23,6 +22,15 @@ class Jobs:
 class Occupation:
 	def __init__(self, engine):
 		self.engine = engine
+
+	def plot_line_graph(self):
+		data = self.query_collection_data()
+		line_graph = pygal.Line(x_label_rotation=270, style=style)
+		line_graph.title = 'Live births by Working and Non-Working women'
+		line_graph.add('Working', [dist['working'] for dist in data.values()])
+		line_graph.add('Non-Working', [dist['non_working'] for dist in data.values()])
+		line_graph.x_labels = [str(key) for key in data.keys()]
+		line_graph.render_to_file(Plot.generate_plot_name('working_non_working_live_births'))
 
 	def plot_bar_graph(self):
 		data = self.query_distribution_data()
@@ -52,7 +60,7 @@ class Occupation:
 		histogram.render_to_file(Plot.generate_plot_name(f'occupation_histogram_{job}_{year}'))
 
 	def create_values(self, data, interval):
-		return [ (len(value), int(key), int(key) + interval) for key, value in data.items() ]
+		return [(len(value), int(key), int(key) + interval) for key, value in data.items()]
 
 	def filter(self, data, interval):
 		filtered = collections.OrderedDict()
@@ -92,6 +100,22 @@ class Occupation:
 			copy /= 10
 			counter += 1
 		return copy, counter
+
+	def query_collection_data(self):
+		data = { }
+		query = 'select working.month, working.working_bc as "Working", nonworking.nonworking_bc as "Non Working" ' \
+				'from (select month, sum(birth_count) as working_bc from mothers_occupations where occupation not in (\'PERSONS NOT ECONOMICALLY ACTIVE\', \'WKRS NOT CLASSIFIABLE BY OCCUPATION\') group by month order by month) as working,' \
+				'(select month, sum(birth_count) as nonworking_bc from mothers_occupations where occupation in (\'PERSONS NOT ECONOMICALLY ACTIVE\', \'WKRS NOT CLASSIFIABLE BY OCCUPATION\') group by month order by month) as nonworking ' \
+				'where working.month = nonworking.month ' \
+				'order by working.month;'
+		results = self.engine.execute(query)
+		for row in results:
+			month = str(row['month'])
+			data[month[:month.rfind('-')]] = {
+				'working': row['Working'],
+				'non_working': row['Non Working']
+			}
+		return data
 
 	def query_occupation_data(self, job, year):
 		query = 'SELECT month, SUM(birth_count) ' \

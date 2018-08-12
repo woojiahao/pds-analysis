@@ -57,12 +57,22 @@ def causes():
 		next=url_for('occupation')
 	)
 
+
 @app.route('/occupation')
 def occupation():
 	return render_template(
 		'occupation.html',
 		page='Mother\'s Occupation',
-		back=url_for('causes'))
+		back=url_for('causes'),
+		next=url_for('cost_of_living'))
+
+
+@app.route('/cost_of_living')
+def cost_of_living():
+	return render_template(
+		'cost_of_living.html',
+		page='Cost of living',
+		back=url_for('occupation'))
 
 
 @app.route('/setup')

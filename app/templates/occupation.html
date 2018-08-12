@@ -1,28 +1,70 @@
 {% extends 'base.html' %}
 {% block content %}
 	<p>
-
+		In order to validate the first hypothesised potential cause of the declining population,
+		<strong><em>More women are joining the workforce and putting their careers ahead of starting a
+			family.</em></strong>, we will have to take a look at the trends of the women in the workforce who are
+		giving birth and if our hypothesis is correct, we should be able to see that there is an increase in the
+		number of working women over time or better yet, see that the <em>number of live births by unemployed
+		women is higher than the number of live births by employed women</em> as that is an indicator that
+		working women are opting to not have as many children.
+		<br>
+		<br>
+		In order to prove this, we can make use of <a
+			href="https://data.gov.sg/dataset/live-births-by-occupation-of-mother-and-birth-order"
+			target="_blank">this data set</a> which displays the occupation of women to the number of live births
+		<br>
+		<br>
+		The data set contains 2 main categories of working, those who are unemployed, labelled by the
+		<strong>WKRS NOT CLASSIFIABLE BY OCCUPATION</strong> and <strong>PERSONS NOT ECONOMICALLY ACTIVE</strong>
+		columns and those who are working, labelled by every other column.
+		<br>
+		<br>
+		However, as you can see, since there is a larger size of data for working women to non-working women, the
+		data plotted is uneven and does not portray a very meaningful visualization, however, if we were to plot
+		the data by each work category using a bar chart, the pattern becomes more obvious, over the 3 years of
+		data available, you can clearly see that the number of live births by women in the
+		<strong>PERSONS NOT ECONOMICALLY ACTIVE</strong> category is significantly higher than that of the other
+		work categories, with only <strong>TECHNICIANS & ASSOCIATE PROFS</strong> being higher than that.
+		<br>
+		<br>
+		Now that we have confirmed that non-working women will generally have more children than working women,
+		we can then explore the exact distribution of live births for women who are not economically active in
+		2015. We want to see exactly which is the most common range of children that the non-working women are
+		having and from the histogram, you can see that it is between 1000 and 1050 babies.
 	</p>
 {% endblock %}
 {% block gallery %}
 	<div class="gallery">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a onclick="switchPlots('distribution')"
-				   id="distribution-tab"
+				<a onclick="switchPlots('line')"
+				   id="line-tab"
 				   class="nav-link active"
-				   href="#">Distribution</a>
+				   href="#">Line</a>
+			</li>
+			<li class="nav-item">
+				<a onclick="switchPlots('bar')"
+				   id="bar-tab"
+				   class="nav-link"
+				   href="#">Bar</a>
 			</li>
 			<li class="nav-item">
 				<a onclick="switchPlots('histogram')"
 				   id="histogram-tab"
-				   class="nav-link active"
+				   class="nav-link"
 				   href="#">Histogram</a>
 			</li>
 		</ul>
 		<div class="charts">
 			<figure class="border plot"
-					id="distribution">
+					id="line">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/working_non_working_live_births.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="bar"
+					style="display: none;">
 				<embed type="image/svg+xml"
 					   src="{{ url_for('static', filename='images/plots/occupation_bar.svg') }}"/>
 			</figure>
