@@ -3,8 +3,6 @@ Website: [PopulationAnalysis](https://populationanalysis.herokuapp.com/)
 
 Analysis of the data sets found at [https://data.gov.sg/](https://data.gov.sg/), the key topic of this analysis is the declining population and potential causes of it.
 
-[Planning Document](https://github.com/woojiahao/pds-analysis/blob/master/planning.md)
-
 ## Installation Guide:
 ### Required Modules:
 1. flask
@@ -61,10 +59,11 @@ class Config:
 cd pds-analysis
 flask shell
 
->>> manager = Manager()
->>> manager.load_data()
+>>> db_manager.load_data()
 ...
 Data loaded
+
+>>> exit()
 ```
 4. Verify that the database has the tables for `enrolment`, `gdp`, `mothers_occupation` and `live_births`, by opening pgAdmin and verifying that the database contains these tables and using the following queries to ensure that the data is correctly loaded:
 ```sql
@@ -73,12 +72,20 @@ SELECT * FROM gdp;
 SELECT * FROM mothers_occupation;
 SELECT * FROM live_births;
 ```
-5. Run the application:
+5. Load the plots into the project
+```bash
+flask shell
+ >>> plot_loader.load_plots()
+ >>> exit()
+```
+6. Run the application:
 ```bash
 cd pds-analysis
 flask run
 ```
 6. Go to the localhost link, which should be: [http:localhost:5000/](http:localhost:5000/)
+
+***
 
 ### Heroku instance (Adviced!)
 This guide will be broken down into 2 segments, the first for [setting up Heroku](https://github.com/woojiahao/pds-analysis#setting-up-heroku) and the second to [set up this application](https://github.com/woojiahao/pds-analysis#setting-up-application):
@@ -107,7 +114,16 @@ origin  https://github.com/woojiahao/pds-analysis (push)
 6. Verify that you are connected to the new PostgreSQL database provided by Heroku using `heroku config` and you should see that now there is an [environment variable](https://devcenter.heroku.com/articles/config-vars) for the database connection string
 
 #### Setting up application:
-1. After you have configured Heroku, push this repository to the `heroku` remote, you will see that Heroku handles all the installation and configuring of the needed modules specified in the [`requirements.txt`](https://github.com/woojiahao/pds-analysis/blob/master/requirements.txt) file
+1. Follow [these steps](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql) to set up PostgreSQL on your local machine
+2. Load the database data and plots 
+```bash
+flask shell
+
+>>> db_manager.load_data()
+>>> plot_loader.load_plots()
+>>> exit()
+```
+3. After you have configured Heroku, push this repository to the `heroku` remote, you will see that Heroku handles all the installation and configuring of the needed modules specified in the [`requirements.txt`](https://github.com/woojiahao/pds-analysis/blob/master/requirements.txt) file
 ```bash
 git push -u heroku master
 ```
