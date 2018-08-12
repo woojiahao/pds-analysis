@@ -57,7 +57,12 @@
 			<br>
 			<kbd>flask shell</kbd>
 			<br>
-			<kbd>&gt;&gt;&gt; Manager().load_data()</kbd>
+			<kbd>&gt;&gt;&gt; db_manager.load_data()</kbd>
+		</li>
+		<li>
+			Load the plots into the project
+			<br>
+			<kbd>&gt;&gt;&gt; plot_loader.load_plots()</kbd>
 		</li>
 		<li>
 			Exit the flask shell
@@ -83,6 +88,26 @@
 			<kbd>cd pds-analysis</kbd>
 		</li>
 		<li>
+			Create a local database in PostgreSQL called 'pds' using pgAdmin
+		</li>
+		<li>
+			Load the data into the local database
+			<br>
+			<kbd>flask shell</kbd>
+			<br>
+			<kbd>&gt;&gt;&gt; db_manager.load_data()</kbd>
+		</li>
+		<li>
+			Load the plots into the project
+			<br>
+			<kbd>&gt;&gt;&gt; plot_loader.load_plots()</kbd>
+		</li>
+		<li>
+			Exit flask shell
+			<br>
+			<kbd>&gt;&gt;&gt; exit()</kbd>
+		</li>
+		<li>
 			Create a Heroku application, you can optionally give it a custom name
 			<br>
 			<kbd>heroku create &ltoptional custom name&gt</kbd>
@@ -100,7 +125,7 @@
 			<kbd>git push -u heroku master</kbd>
 		</li>
 		<li>
-			Load the database
+			Load the database into Heroku
 			<br>
 			<kbd>heroku run flask shell</kbd>
 			<br>
