@@ -8,8 +8,7 @@ from plotting.plot_loader import PlotLoader
 def make_shell_context():
 	return {
 		'Manager': Manager,
-		'engine': db.engine,
-		'PlotLoader': PlotLoader
+		'plot_loader': PlotLoader(db.engine)
 	}
 
 if __name__ == '__main__':
