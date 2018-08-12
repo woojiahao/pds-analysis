@@ -43,7 +43,7 @@ class Writer:
 		print(f'Success: Created table: {tablename}')
 
 	def __generate_attr_dict__(self, tablename: str, data_frame: DataFrame, primary_keys: tuple,
-							   attrs: dict = None) -> tuple:
+							   attrs: dict = None):
 		attr_dict = { '__tablename__': tablename }
 
 		if attrs is None:
@@ -86,7 +86,7 @@ class Writer:
 
 		return data_frame, attr_dict
 
-	def __is_valid_pk__(self, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None) -> tuple:
+	def __is_valid_pk__(self, data_frame: DataFrame, primary_keys: tuple = None, attrs: dict = None):
 		if primary_keys is None:
 			primary_keys = [column_name for column_name, attributes in attrs.items()
 							if attributes['primary_key']]
@@ -105,7 +105,7 @@ class Writer:
 
 		return len(filtered) == len(set(filtered)), primary_keys
 
-	def __match_attr__(self, data_frame: DataFrame, attrs: dict) -> DataFrame:
+	def __match_attr__(self, data_frame: DataFrame, attrs: dict):
 		col_names = { }
 		for column_name, attributes in attrs.items():
 			if column_name not in data_frame.columns:

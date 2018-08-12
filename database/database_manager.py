@@ -18,7 +18,7 @@ class Manager:
 			self.entity_loader.load_all()
 			print('Data loaded')
 
-	def __has_database__(self) -> bool:
+	def __has_database__(self):
 		has_table = True
 		for entity in self.entities:
 			has_table &= self.entity_loader.alchemy_manager.has_table(entity.tablename)
