@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from plotting.enrolment import Enrolment, Genders
 from plotting.enrolment_live_birth import EnrolmentLiveBirth
+from plotting.job_vacancy import JobVacancy
 from plotting.live_birth_rates import LiveBirthRate
 from plotting.occupation import Occupation, Jobs
 
@@ -30,5 +31,8 @@ occupation = Occupation(db.engine)
 occupation.plot_line_graph()
 occupation.plot_histogram(Jobs.UNEMPLOYED, 2015)
 occupation.plot_bar_graph()
+
+job_vacancy = JobVacancy(db.engine)
+job_vacancy.plot_line_graph()
 
 from app import routes

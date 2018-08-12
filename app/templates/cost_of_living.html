@@ -41,5 +41,33 @@
 	</ol>
 {% endblock %}
 {% block gallery %}
-
+	<div class="gallery">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a onclick="switchPlots('job-vacancy')"
+				   id="job-vacancy-tab"
+				   class="nav-link active"
+				   href="#">Job Vacancy</a>
+			</li>
+			<li class="nav-item">
+				<a onclick="switchPlots('bar')"
+				   id="bar-tab"
+				   class="nav-link"
+				   href="#">Bar</a>
+			</li>
+		</ul>
+		<div class="charts">
+			<figure class="border plot"
+					id="job-vacancy">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/job_vacancy_rate.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="bar"
+					style="display: none;">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/live_birth_bar.svg') }}"/>
+			</figure>
+		</div>
+	</div>
 {% endblock %}
