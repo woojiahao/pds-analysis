@@ -35,8 +35,25 @@ class ResalePrice:
 		histogram.add(f'{flat_type}', self.create_values(self.filter(data, interval), interval))
 		histogram.render_to_file(Plot.generate_plot_name(f'resale_price_distribution_{flat_type}_{year}'))
 
-	def plot_box_plot(self):
-		pass
+	def plot_box_plot(self, flats, quarter):
+		data = self.query_distribution_data(flats, quarter)
+
+		box_plot = pygal.Box(box_mode="stdev", style=style)
+		box_plot.title = f'Distribution of median resale prices in the Q{quarter} (All Time)'
+		box_plot.x_labels = flats
+		for flat in flats:
+			box_plot.add(flat, data[flat])
+
+		box_plot.render_to_file(Plot.generate_plot_name(f'resale_price_distribution_box_Q{quarter}_all_time'))
+
+	def query_distribution_data(self, flats, quarter):
+		data = { }
+		for flat in flats:
+			query = f'SELECT price FROM resale_price WHERE flat_type=\'{flat}\' AND quarter like \'%%Q{quarter}\''
+			results = self.engine.execute(query)
+			data[flat] = sorted([row['price'] for row in results if row['price'] > 0])
+
+		return data
 
 	def query_price_data(self, flat_type, year):
 		query = f'SELECT * FROM resale_price WHERE quarter LIKE \'{year}%%\' AND flat_type=\'{flat_type}\';'
