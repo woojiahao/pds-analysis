@@ -122,6 +122,10 @@
 		<li>
 			Push the repository to Heroku
 			<br>
+			<kbd>git add .</kbd>
+			<br>
+			<kbd>git commit -m "Setting up"</kbd>
+			<br>
 			<kbd>git push -u heroku master</kbd>
 		</li>
 		<li>
@@ -129,7 +133,7 @@
 			<br>
 			<kbd>heroku run flask shell</kbd>
 			<br>
-			<kbd>&gt;&gt;&gt; Manager().load_data()</kbd>
+			<kbd>&gt;&gt;&gt; db_manager.load_data()</kbd>
 		</li>
 		<li>
 			Exit the shell

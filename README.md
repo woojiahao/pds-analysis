@@ -132,6 +132,8 @@ flask shell
 ```
 3. After you have configured Heroku, push this repository to the `heroku` remote, you will see that Heroku handles all the installation and configuring of the needed modules specified in the [`requirements.txt`](https://github.com/woojiahao/pds-analysis/blob/master/requirements.txt) file
 ```bash
+git add .
+git commit -m "Setting up"
 git push -u heroku master
 ```
 2. Load the data into the Heroku database in this manner:
