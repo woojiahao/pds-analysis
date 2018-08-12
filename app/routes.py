@@ -72,7 +72,17 @@ def cost_of_living():
 	return render_template(
 		'cost_of_living.html',
 		page='Cost of living',
-		back=url_for('occupation'))
+		back=url_for('occupation'),
+		next=url_for('conclusion'))
+
+
+@app.route('/conclusion')
+def conclusion():
+	return render_template(
+		'conclusion.html',
+		page='Conclusion',
+		back=url_for('cost_of_living')
+	)
 
 
 @app.route('/setup')
