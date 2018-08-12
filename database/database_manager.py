@@ -98,25 +98,44 @@ class Manager:
 			}
 		)
 
-		gdp = Entity(
-			tablename='gdp',
-			file_name='data/gross-domestic-product-at-current-market-prices-annual.csv',
+		resale_price = Entity(
+			tablename='resale_price',
+			file_name='data/median-resale-prices-for-registered-applications-by-town-and-flat-type.csv',
 			attrs={
-				'year': {
-					'dtype': DataTypes.INT64,
+				'quarter': {
+					'dtype': DataTypes.STR,
 					'primary_key': True
 				},
-				'misc': {
+				'town': {
 					'dtype': DataTypes.STR,
-					'primary_key': False,
-					'backing': 'level_1'
+					'primary_key': True
 				},
-				'total': {
+				'flat_type': {
+					'dtype': DataTypes.STR,
+					'primary_key': True
+				},
+				'price': {
 					'dtype': DataTypes.FLOAT64,
-					'primary_key': False,
-					'backing': 'value'
+					'primary_key': False
+				}
+			},
+			replace_vals=['na', '-'],
+			fill_val=0
+		)
+
+		vacancy = Entity(
+			tablename='job_vacancy',
+			file_name='data/job-vacancy-rate-topline.csv',
+			attrs={
+				'quarter': {
+					'dtype': DataTypes.STR,
+					'primary_key': True
+				},
+				'job_vacancy_rate': {
+					'dtype': DataTypes.FLOAT64,
+					'primary_key': False
 				}
 			}
 		)
 
-		self.entities.extend([enrolment, live_births, occupations, gdp])
+		self.entities.extend([enrolment, live_births, occupations, resale_price, vacancy])

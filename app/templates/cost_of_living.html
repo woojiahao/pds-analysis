@@ -1,4 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-	<p>Hello world</p>
+	<p>
+		The cost of living is affected by a myriad of factors such as the prices of housing and the number of
+		job vacancies available.
+	</p>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">Indicator</th>
+			<th scope="col">Relationship to cost of living</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">Price of housing</th>
+			<td>Direct</td>
+		</tr>
+		<tr>
+			<th scope="row">Job Vacancy Rate</th>
+			<td>Inverse</td>
+		</tr>
+		</tbody>
+	</table>
+	<p>Table: <em>Relationship between an indicator and the cost of living</em></p>
+
+	<p>
+		In order to confirm that the cost of living is indeed increasing in Singapore, we will be analyzing the
+		following data sets:
+	</p>
+	<ol>
+		<li>
+			<a href="https://data.gov.sg/dataset/median-resale-prices-for-registered-applications-by-town-and-flat-type"
+			   target="_blank">Median resale flat price</a>
+		</li>
+		<li>
+			<a href="https://data.gov.sg/dataset/job-vacancy-rates-by-industry-and-occupational-group-quarterly"
+			   target="_blank">Job vacancy rate</a>
+		</li>
+	</ol>
+{% endblock %}
+{% block gallery %}
+
 {% endblock %}
