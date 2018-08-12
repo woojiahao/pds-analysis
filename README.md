@@ -32,12 +32,16 @@ pip install flask flask-sqlalchemy flask-migrate sqlalchemy gunicorn numpy matpl
 * `numpy`, `matplotlib` and `pandas` these are all for the data science part of the application
 * `pygal` is a data visualization library to reduces overhead for making interactive diagrams, instead allowing you to focus on making a nice plot
 
+***
+
 ### Pre-requisites:
 1. PostgreSQL installed and setup for this project on your local machine, [guide here](https://github.com/woojiahao/pds-analysis/#setting-up-postgresql)
 2. [Modules needed](https://github.com/woojiahao/pds-analysis#required-modules) 
 3. Python3 
 
 You are able to load the application both on your local machine and on a Heroku server (**adviced**) and the installation guide will go into detail on how to do both:
+
+***
 
 ### Local Instance
 1. Clone this repository and navigate into it
@@ -153,6 +157,8 @@ Scaling dynos... done, now running web at 1:Free
 ```bash
 heroku open
 ```
+
+***
 
 ### Setting up PostgreSQl
 1. Download PostgreSQL for the operating system you are on: [Download](https://www.postgresql.org/download/), make sure you download pgAdmin as well 
