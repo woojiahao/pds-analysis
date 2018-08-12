@@ -44,9 +44,15 @@
 	<div class="gallery">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
+				<a onclick="switchPlots('prices')"
+				   id="prices-tab"
+				   class="nav-link active"
+				   href="#">Flat Type Prices</a>
+			</li>
+			<li class="nav-item">
 				<a onclick="switchPlots('distribution')"
 				   id="distribution-tab"
-				   class="nav-link active"
+				   class="nav-link"
 				   href="#">Flat Type Price Distribution</a>
 			</li>
 			<li class="nav-item">
@@ -58,7 +64,13 @@
 		</ul>
 		<div class="charts">
 			<figure class="border plot"
-					id="distribution">
+					id="prices">
+				<embed type="image/svg+xml"
+					   src="{{ url_for('static', filename='images/plots/resale_price_distribution_box_Q1_all_time.svg') }}"/>
+			</figure>
+			<figure class="border plot"
+					id="distribution"
+					style="display: none;">
 				<embed type="image/svg+xml"
 					   src="{{ url_for('static', filename='images/plots/resale_price_distribution_4-room_2015.svg') }}"/>
 			</figure>
