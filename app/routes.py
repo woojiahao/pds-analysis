@@ -16,7 +16,7 @@ def home():
 def effects():
 	return render_template(
 		'effects.html',
-		page='Effects of declining population',
+		page='Effects of declining birth rate',
 		back=url_for('home'),
 		next=url_for('hypothesis'))
 
@@ -52,7 +52,7 @@ def correlation_live_birth_enrolment():
 def causes():
 	return render_template(
 		'causes.html',
-		page='Potential causes of a declining population',
+		page='Potential causes of a declining birth rate',
 		back=url_for('correlation_live_birth_enrolment'),
 		next=url_for('occupation')
 	)
@@ -87,7 +87,7 @@ def conclusion():
 
 @app.route('/setup')
 def setup():
-	return render_template('setup.html', page='Set-Up')
+	return render_template('setup.html', page='Setup')
 
 
 @app.route('/about')

@@ -7,8 +7,8 @@
 		<br>
 		<br>
 		The GitHub repository for this project can be found over <a
-			href="https://github.com/woojiahao/pds-analysis"
-			target="_blank">here</a>, a more technical
+					href="https://github.com/woojiahao/pds-analysis"
+					target="_blank">here</a>, a more technical
 		set-up guide can also be found there.
 	</p>
 
@@ -27,16 +27,36 @@
 		</li>
 		<li>
 			<a href="https://devcenter.heroku.com/articles/heroku-cli"
-			   target="_blank">Heroku</a>
+				 target="_blank">Heroku</a>
 		</li>
 		<li>
 			<a href="https://github.com/woojiahao/pds-analysis#setting-up-postgresql"
-			   target="_blank">PostgreSQL</a>
+				 target="_blank">PostgreSQL</a>
 		</li>
 
 	</ol>
 
 	<h3>Installation Guide:</h3>
+	<h4>Quick installation on a local machine:</h4>
+	<ol>
+		<li>
+			Clone the repository
+			<br>
+			<kbd>git clone https://github.com/woojiahao/pds-analysis.git</kbd>
+		</li>
+		<li>
+			Navigate into the project folder
+			<br>
+			<kbd>cd pds-analysis</kbd>
+		</li>
+		<li>
+			Start the flask application which can be found at <a href="http://127.0.0.1:5000/"
+																													 target="_blank">http://127.0.0.1:5000/</a>
+			<br>
+			<kbd>flask run</kbd>
+		</li>
+	</ol>
+
 	<h4>Hosting on a local machine:</h4>
 	<ol>
 		<li>
@@ -114,7 +134,7 @@
 		</li>
 		<li>
 			Add the <a
-				href="https://elements.heroku.com/addons/heroku-postgresql">Heroku-Postgres</a>
+						href="https://elements.heroku.com/addons/heroku-postgresql">Heroku-Postgres</a>
 			add-on to the application
 			<br>
 			<kbd>heroku addons:create heroku-postgresql:hobby-dev</kbd>
